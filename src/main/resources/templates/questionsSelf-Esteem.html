@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic&display=swap" rel="stylesheet">
+
+    <title>Self-Esteem Test</title>
+    <style>
+        body {
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-family: 'Noto Sans Arabic', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right,#9AD0C2,#F1FADA);
+            text-align: right;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #F1FAFA;
+        }
+
+        .question {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+
+        h2 {
+            margin-top: 0;
+            direction: rtl;
+            unicode-bidi: bidi-override;
+        }
+
+        .options {
+            margin-bottom: 20px;
+        }
+
+        .options label {
+            /* display: block; */
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            text-align: left;
+            margin-bottom: 0.5rem;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .nav-buttons {
+            margin-top: 20px;
+            text-align: right;
+        }
+
+        .nav-buttons button {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="questions">
+            <div class="question active" id="question1">
+                <h2>1. هل تعتقد أنك أقل شأنا من الآخرين بطريقة ما؟</h2>
+                <div class="options" >
+                  <label for="q1-option1" class="link"> لا، على الاطلاق</label>  
+                  <input type="radio" id="q1-option1" name="group1" value="0">
+                    <br>
+                    <br>
+                    <label for="q1-option2" class="link">نعم قليلا</label>
+                    <input type="radio" id="q1-option2" name="group1" value="1">
+                    <br>
+                    <br>
+                    <label for="q1-option3" class="link">نعم إلى حد ما</label>
+                    <input type="radio" id="q1-option3" name="group1" value="2">
+                    <br>
+                    <br>
+                    <label for="q1-option4" class="link">نعم، بطرق عديدة</label>
+                    <input type="radio" id="q1-option4" name="group1" value="3">
+                    <br>
+                    <br>
+                    <label for="q1-option5" class="link">نعم تماما</label>
+                    <input type="radio" id="q1-option5" name="group1" value="4">
+                </div>
+                <div class="nav-buttons">
+                    <button onclick="checkIfUserAnswer(1)">Next</button>
+                </div>
+            </div>
+            <div class="question" id="question2">
+                <h2>2. هل تعتقد أنك شخص جدير بالاهتمام؟</h2>
+                <div class="options">
+                  <label for="q2-option1" class="link">  لا، على الاطلاق</label>
+                  <input type="radio" id="q2-option1" name="group2" value="0">
+                    <br>
+                    <br>
+                    <label for="q2-option2" class="link">نعم، ولكن ليس كثيرا</label>
+                    <input type="radio" id="q2-option2" name="group2" value="1">
+                    <br>
+                    <br>
+                    <label for="q2-option3" class="link">نعم إلى حد ما</label>
+                    <input type="radio" id="q2-option3" name="group2" value="2">
+                    <br>
+                    <br>
+                    <label for="q2-option4" class="link">نعم، بالنسبة للجزء الأكبر</label>
+                    <input type="radio" id="q2-option4" name="group2" value="3">
+                    <br>
+                    <br>
+                    <label for="q2-option5" class="link">نعم بالتاكيد</label>
+                    <input type="radio" id="q2-option5" name="group2" value="4">
+                </div>
+                <div class="nav-buttons">
+                  <button onclick="checkIfUserAnswer(2)">Next</button>
+                    <button onclick="backQuestion(2)">Back</button>
+                </div>
+            </div>
+            <div class="question" id="question3">
+                <h2>3. هل أنت حساس تجاه النقد؟</h2>
+                <div class="options">
+                  <label for="q3-option1" class="link">لا، على الاطلاق</label>
+                  <input type="radio" id="q3-option1" name="group3" value="0">
+                    <br>
+                    <br>
+                    <label for="q3-option2" class="link">نعم قليلا</label>
+                    <input type="radio" id="q3-option2" name="group3" value="1">
+                    <br>
+                    <br>
+                    <label for="q3-option3" class="link">نعم إلى حد ما</label>
+                    <input type="radio" id="q3-option3" name="group3" value="2">
+                    <br>
+                    <br>
+                    <label for="q3-option4" class="link">نعم، الكثير</label>
+                    <input type="radio" id="q3-option4" name="group3" value="3">
+                    <br>
+                    <br>
+                    <label for="q3-option5" class="link">نعم تماما</label>
+                    <input type="radio" id="q3-option5" name="group3" value="4">
+                </div>
+                <div class="nav-buttons">
+                  <button onclick="checkIfUserAnswer(3)">Next</button>
+                    <button onclick="backQuestion(3)">Back</button>
+                </div>
+            </div>
+            <div class="question" id="question4">
+                <h2>4. هل تشعر بالفشل الشامل؟</h2>
+                <div class="options">
+                  <label for="q4-option1" class="link">لا، على الاطلاق</label>
+                    <input type="radio" id="q4-option1" name="group4" value="0">
+                    <br>
+                    <br>
+                    <label for="q4-option2" class="link">نعم قليلا</label>
+                    <input type="radio" id="q4-option2" name="group4" value="1">
+                    <br>
+                    <br>
+                    <label for="q4-option3" class="link">نعم إلى حد ما</label>
+                    <input type="radio" id="q4-option3" name="group4" value="2">
+                    <br>
+                    <br>
+                    <label for="q4-option4" class="link">نعم، الكثير</label>
+                    <input type="radio" id="q4-option4" name="group4" value="3">
+                    <br>
+                    <br>
+                    <label for="q4-option5" class="link">نعم تماما</label>
+                    <input type="radio" id="q4-option5" name="group4" value="4">
+                </div>
+                <div class="nav-buttons">
+                  <button onclick="checkIfUserAnswer(4)">Next</button>
+                    <button onclick="backQuestion(4)">Back</button>
+                </div>
+            </div>
+            <div class="question" id="question5">
+                <h2>5. كم مرة تفكر بإيجابية في نفسك؟</h2>
+                <div class="options">
+                  <label for="q5-option1" class="link">أبداً</label>
+                    <input type="radio" id="q5-option1" name="group5" value="0">
+                    <br>
+                    <br>
+                    <label for="q5-option2" class="link">نادرًا</label>
+                    <input type="radio" id="q5-option2" name="group5" value="1">
+                    <br>
+                    <br>
+                    <label for="q5-option3" class="link">أحيانا</label>
+                    <input type="radio" id="q5-option3" name="group5" value="2">
+                    <br>
+                    <br>
+                    <label for="q5-option4" class="link">غالباً</label>
+                    <input type="radio" id="q5-option4" name="group5" value="3">
+                    <br>
+                    <br>
+                    <label for="q5-option5" class="link">دائماً</label>
+                    <input type="radio" id="q5-option5" name="group5" value="4">
+                </div>
+                <div class="nav-buttons">
+                  <button onclick="checkIfUserAnswer(5)">Next</button>
+                    <button onclick="backQuestion(5)">Back</button>
+                </div>
+            </div>
+            <div class="question" id="question6">
+                <h2>6. هل تحب نفسك وتتقبلها حتى عندما يرفضك الآخرون؟</h2>
+                <div class="options">
+                  <label for="q6-option1" class="link">لا أبدا</label>
+                    <input type="radio" id="q6-option1" name="group6" value="0">
+                    <br>
+                    <br>
+                    <label for="q6-option2" class="link">نعم، ولكن ليس في كثير من الأحيان</label>
+                    <input type="radio" id="q6-option2" name="group6" value="1">
+                    <br>
+                    <br>
+                    <label for="q6-option3" class="link">نعم احيانا</label>
+                    <input type="radio" id="q6-option3" name="group6" value="2">
+                    <br>
+                    <br>
+                    <label for="q6-option4" class="link">نعم في كثير من الأحيان</label>
+                    <input type="radio" id="q6-option4" name="group6" value="3">
+                    <br>
+                    <br>
+                    <label for="q6-option5" class="link">نعم دائما</label>
+                    <input type="radio" id="q6-option5" name="group6" value="4">
+                </div>
+                <div class="nav-buttons">
+                  <button onclick="checkIfUserAnswer(6)">Next</button>
+                    <button onclick="backQuestion(6)">Back</button>
+                </div>
+            </div>
+            <div class="question" id="question7">
+              <h2>7. هل تشعر بالتوتر عندما يُطلب منك التحدث إلى مجموعة من الأشخاص لا تعرفهم؟</h2>
+              <div class="options">
+                <label for="q7-option1" class="link">لا أبدا</label>
+                  <input type="radio" id="q7-option1" name="group7" value="0">
+                  <br>
+                  <br>
+                  <label for="q7-option2" class="link">نعم، ولكن ليس في كثير من الأحيان</label>
+                  <input type="radio" id="q7-option2" name="group7" value="1">
+                  <br>
+                  <br>
+                  <label for="q7-option3" class="link">نعم احيانا</label>
+                  <input type="radio" id="q7-option3" name="group7" value="2">
+                  <br>
+                  <br>
+                  <label for="q7-option4" class="link">نعم في كثير من الأحيان</label>
+                  <input type="radio" id="q7-option4" name="group7" value="3">
+                  <br>
+                  <br>
+                  <label for="q7-option5" class="link">نعم دائما</label>
+                  <input type="radio" id="q7-option5" name="group7" value="4">
+              </div>
+              <div class="nav-buttons">
+                <button onclick="checkIfUserAnswer(7)">Next</button>
+                  <button onclick="backQuestion(7)">Back</button>
+              </div>
+          </div>
+          <div class="question" id="question8">
+            <h2>8. هل أنت راضٍ عن الشخص الذي أصبحت عليه؟</h2>
+            <div class="options">
+              <label for="q8-option1" class="link">لا، على الاطلاق</label>
+                <input type="radio" id="q8-option1" name="group8" value="0">
+                <br>
+                <br>
+                <label for="q8-option2" class="link">نعم، ولكن بشكل طفيف فقط</label>
+                <input type="radio" id="q8-option2" name="group8" value="1">
+                <br>
+                <br>
+                <label for="q8-option3" class="link">نعم احيانا</label>
+                <input type="radio" id="q8-option3" name="group8" value="2">
+                <br>
+                <br>
+                <label for="q8-option4" class="link">نعم، بالنسبة للجزء الأكبر</label>
+                <input type="radio" id="q8-option4" name="group8" value="3">
+                <br>
+                <br>
+                <label for="q8-option5" class="link">نعم تماما</label>
+                <input type="radio" id="q8-option5" name="group8" value="4">
+            </div>
+            <div class="nav-buttons">
+              <button onclick="checkIfUserAnswer(8)">Next</button>
+                <button onclick="backQuestion(8)">Back</button>
+            </div>
+        </div>
+        <div class="question" id="question9">
+          <h2>9. هل تشعر بالرضا عن نفسك دون التحقق المنتظم من الآخرين؟</h2>
+          <div class="options">
+            <label for="q9-option1" class="link">لا، على الاطلاق</label>
+              <input type="radio" id="q9-option1" name="group9" value="0">
+              <br>
+              <br>
+              <label for="q9-option2" class="link">نعم، ولكن ليس في كثير من الأحيان</label>
+              <input type="radio" id="q9-option2" name="group9" value="1">
+              <br>
+              <br>
+              <label for="q9-option3" class="link">نعم احيانا</label>
+              <input type="radio" id="q9-option3" name="group9" value="2">
+              <br>
+              <br>
+              <label for="q9-option4" class="link">نعم، بالنسبة للجزء الأكبر</label>
+              <input type="radio" id="q9-/option4" name="group9" value="3">
+              <br>
+              <br>
+              <label for="q9-option5" class="link">نعم، في كل وقت</label>
+              <input type="radio" id="q9-option5" name="group9" value="4">
+          </div>
+          <div class="nav-buttons">
+            <button onclick="checkIfUserAnswer(9)">Next</button>
+              <button onclick="backQuestion(9)">Back</button>
+          </div>
+      </div>
+  <div class="question" id="question10">
+                <h2>01. كيف تقيم مستوى احترامك لذاتك؟</h2>
+                <div class="options">
+                  <label for="q10-option1" class="link">أنا سعيد جدًا بمن أنا</label>
+                    <input type="radio" id="q10-option1" name="group10" value="0">
+                    <br>
+                    <br>
+                    <label for="q10-option2" class="link">أنا سعيد في الغالب بما أنا عليه</label>
+                    <input type="radio" id="q10-option2" name="group10" value="1">
+                    <br>
+                    <br>
+                    <label for="q10-option3" class="link">لدي متوسط ​​احترام الذات</label>
+                    <input type="radio" id="q10-option3" name="group10" value="2">
+                    <br>
+                    <br>
+                    <label for="q10-option4" class="link">لدي تدني احترام الذات</label>
+                    <input type="radio" id="q10-option4" name="group10" value="3">
+                    <br>
+                    <br>
+                    <label for="q10-option5" class="link">لا امتلك احترام الذات</label>
+                    <input type="radio" id="q10-option5" name="group10" value="4">
+                </div>
+                <div class="nav-buttons">                  
+                  <button onclick="backQuestion(10)">Back</button>
+                  <button onclick="GoToResult()">submit</button>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <script>
+        function checkIfUserAnswer(currentQuestion){
+            var checkifanswer = document.querySelector('input[name="group'+currentQuestion+'"]:checked');
+            if(checkifanswer){
+                nextQuestion(currentQuestion);
+            }
+            else{
+                 alert("please answered on this question");
+            }
+        }
+        function nextQuestion(currentQuestion){
+            var nextQuestion = currentQuestion + 1;
+            var currentQuestionDiv = document.getElementById("question" + currentQuestion);
+            var nextQuestionDiv = document.getElementById("question" + nextQuestion);
+
+            if (nextQuestionDiv) {
+                currentQuestionDiv.classList.remove("active");
+                nextQuestionDiv.classList.add("active");
+            } else {
+                alert("You have answered all questions!");
+            }
+        }
+
+        function backQuestion(currentQuestion) {
+            var prevQuestion = currentQuestion - 1;
+            var currentQuestionDiv = document.getElementById("question" + currentQuestion);
+            var prevQuestionDiv = document.getElementById("question" + prevQuestion);
+
+            if (prevQuestionDiv) {
+                currentQuestionDiv.classList.remove("active");
+                prevQuestionDiv.classList.add("active");
+            } else {
+                alert("You are already at the first question!");
+            }
+        }
+        function GoToResult(){
+            window.location.href="test_result.html";
+        }
+    </script>
+</body>
+</html>

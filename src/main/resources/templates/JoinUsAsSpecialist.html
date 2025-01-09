@@ -1,0 +1,398 @@
+<!-- join_us_specialist.html -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join Us as a Specialist</title>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEEuM4ru1uetSeQDd4c-Ij1nYRYxKiQOo&libraries=places"></script>
+  <style>
+        /* styles.css */
+        body {
+            /* font-family: Arial, sans-serif; */
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            background: linear-gradient(135deg,#9AD0C2,#F1FADA);
+
+        }
+        .container {
+            width: 30%;
+            margin: 50px auto;
+            background-color    : #F1FAFA;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .con{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        img{
+            width: 70px;
+            margin-top: -55px;
+           /* // position: absolute; */
+           /* // l/\eft: 39.7rem; */
+           display: flex;
+           align-items: center;
+        }
+
+        h2 {
+            text-align: center;
+            color: #009cff;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="number"],
+        input[type="password"],
+        select,
+        textarea,
+        button {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 12px;
+            box-sizing: border-box;
+            margin-top: 5px;
+            background-color: #F1FAFA;
+
+        }
+
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 2rem;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+        .success-message {
+            background-color: #5cb85c;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        p{
+            font-weight: lighter;
+            display: flex;
+            justify-content: center;
+        }
+        #map {
+            height: 400px; /* Set your desired height */
+            width: 100%; /* Set your desired width */
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+  <div class="con">
+    <img src="/images/add-friend.png" class="image">
+  </div>
+  <br>
+  <h2>Join Us as a Specialist</h2>
+  <form id="specialistForm" th:action="@{/signup/doctor_signup}" th:object="${doctorSignUpRequest}" method="POST" enctype="multipart/form-data" onsubmit="return CheckAll()">
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" th:field="*{email}" placeholder="Email" required>
+      <span id="email-message" style="color: red;"></span>
+    </div>
+
+    <div>
+      <label for="password" >Password:</label>
+      <input type="password"  id="password" th:field="*{password}" placeholder="Password" required>
+    </div>
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" id="name" th:field="*{name}" placeholder="Name" required><br>
+    </div>
+    <div class="form-group">
+      <label for="dateOfBirth">Date of Birth:</label>
+      <input type="date" id="dateOfBirth" th:field="*{dateOfBirth}" placeholder="Date of Birth">
+    </div>
+    <div class="form-group">
+      <label for="nationality">Nationality:</label>
+      <input type="text" id="nationality" th:field="*{nationality}" placeholder="Nationality" required><br>
+    </div>
+    <div class="form-group">
+      <label for="phoneNumber">Phone Number:</label>
+      <input type="text" id="phoneNumber" th:field="*{phoneNumber}" placeholder="Phone Number">
+    </div>
+    <div class="form-group">
+      <label for="gender">Gender:</label>
+      <select id="gender" th:field="*{gender}" required>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="cv">CV:</label>
+      <input type="file" id="cv" name="cv" accept=".pdf,.doc,.docx" required>
+    </div>
+    <div class="form-group">
+      <label for="country">Country:</label>
+      <input type="text" id="country" th:field="*{country}" placeholder="Country">
+    </div>
+    <div class="form-group">
+      <label for="city">City:</label>
+      <input type="text" id="city" th:field="*{city}" placeholder="City">
+    </div>
+    <div class="form-group">
+      <label for="yearsOfExperience">Years of Experience:</label>
+      <input type="number" id="yearsOfExperience" th:field="*{yearsOfExperience}" placeholder="Years Of Experience" required>
+    </div>
+    <div class="form-group">
+      <label for="jobTitle">Job Title:</label>
+      <input type="text" id="jobTitle" th:field="*{jobTitle}" placeholder="Job Title" required>
+    </div>
+
+    <div>
+      <label for="age">Age:</label>
+      <input type="number" id="age" th:field="*{age}" placeholder="Age"><br>
+    </div>
+    <div class="form-group">
+      <label for="aboutTheDoctor">About the Doctor:</label><br>
+      <textarea id="aboutTheDoctor" th:field="*{aboutTheDoctor}" placeholder="About the Doctor"></textarea><br>
+
+    </div>
+<!--    <div class="form-group">-->
+<!--      <div id="educationFields">-->
+<!--        &lt;!&ndash; Initially, only one set of education fields &ndash;&gt;-->
+<!--        <div class="education-entry">-->
+<!--          <input type="text" name="educations[0].university" placeholder="University/Institute" required>-->
+<!--          <input type="text" name="educations[0].specialization" placeholder="Specialization" required>-->
+<!--          <input type="text" name="educations[0].degree" placeholder="Degree" required>-->
+<!--          <button type="button" class="removeEducation">Remove</button>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <button type="button" id="addEducation">Add Education</button>-->
+<!--    </div>-->
+
+
+    <div class="form-group">
+      <label for="identityLicense">Identity/License:</label>
+      <input type="file" id="identityLicense" name="identityLicense" accept=".pdf,.doc,.docx" required>
+    </div>
+    <div>
+      <label>Clinic Location:</label>
+      <input id="searchInput" type="text" placeholder="Search for location" required  name="location">
+      <button onclick="saveLocation()">Save Location</button>
+    </div>
+    <br>
+    <div id="map"></div>
+    <br>
+    <br>
+    <button type="submit" id="submitButton">تسجيل</button>
+    <br>
+    <br>
+    <p><a href="/login"> تسجيل الدخول</a>هل لديك حساب ؟ </p>
+  </form>
+
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('addEducation').addEventListener('click', addEducationField);
+        document.addEventListener('click', function (event) {
+            if (event.target.classList.contains('removeEducation')) {
+                event.target.parentElement.remove();
+            }
+        });
+    });
+
+    function addEducationField() {
+        const educationFieldsContainer = document.getElementById('educationFields');
+        const newEducationEntry = document.createElement('div');
+        newEducationEntry.classList.add('education-entry');
+        newEducationEntry.innerHTML = `
+            <input type="text" name="university[]" placeholder="University/Institute" required>
+            <input type="text" name="specialization[]" placeholder="Specialization" required>
+            <input type="text" name="degree[]" placeholder="Degree" required>
+            <button type="button" class="removeEducation">Remove</button>
+        `;
+        educationFieldsContainer.appendChild(newEducationEntry);
+    }
+
+ function checkPassword(password) {
+        const pattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        return pattern.test(password);
+    }
+
+    function checkAll() {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const phoneNumber = document.getElementById('phoneNumber').value;
+
+    // Check email format
+    const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@(([^<>()[\]\\.,;:\s@"]+\.)+[^<>()[\]\\.,;:\s@"]{2,})$/i;
+    if (!emailRegex.test(email)) {
+        alert("Please enter a valid email.");
+        return false;
+    }
+
+    // Check password strength
+<!--    if (!checkPassword(password)) {-->
+<!--        alert('Password must be at least 8 characters long and include at least one letter, one digit, and one special character.');-->
+<!--        return false;-->
+<!--    }-->
+
+    // Check phone number format
+    const phoneRegex = /^\d{10}$/;
+    if (!phoneRegex.test(phoneNumber)) {
+        alert("Please enter a valid 10-digit phone number.");
+        return false;
+    }
+
+
+
+    // All checks passed
+    return true;
+}
+
+
+    window.onload = function() {
+        const form = document.getElementById('specialistForm');
+        form.onsubmit = function(event) {
+            if (!checkAll()) {
+                event.preventDefault(); // Prevent form submission if validation fails
+            }
+        };
+    };
+
+
+
+
+
+    document.getElementById('email').addEventListener('blur', function () {
+        const email = this.value.trim();
+        if (email !== '') {
+            checkEmailAvailability(email);
+        }
+    });
+
+    function checkEmailAvailability(email) {
+        fetch(`/check/doctor/check-email?email=${email}`)
+            .then(response => response.json())
+            .then(data => {
+                const messageElement = document.getElementById('email-message');
+                const submitButton = document.getElementById('submitButton');
+                if (data === true) {
+                    messageElement.textContent = 'Email already exists.';
+                    submitButton.disabled = true;
+                } else {
+                    messageElement.textContent = '';
+                    submitButton.disabled = false;
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+
+
+
+
+
+
+
+let map, marker;
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 31.9632, lng: 35.9304 },
+                zoom: 8
+            });
+
+            marker = new google.maps.Marker({
+                map: map,
+                draggable: true,
+                position: { lat: 31.9632, lng: 35.9304 }
+            });
+
+            google.maps.event.addListener(marker, 'dragend', function() {
+                document.getElementById('searchInput').value = marker.getPosition().lat() + ', ' + marker.getPosition().lng();
+            });
+
+            const input = document.getElementById('searchInput');
+            const searchBox = new google.maps.places.SearchBox(input);
+
+            map.addListener('bounds_changed', function() {
+                searchBox.setBounds(map.getBounds());
+            });
+
+            searchBox.addListener('places_changed', function() {
+                const places = searchBox.getPlaces();
+
+                if (places.length == 0) {
+                    return;
+                }
+
+                marker.setVisible(false);
+
+                const bounds = new google.maps.LatLngBounds();
+                places.forEach(function(place) {
+                    if (!place.geometry) {
+                        console.log("Returned place contains no geometry");
+                        return;
+                    }
+
+                    if (place.geometry.viewport) {
+                        bounds.union(place.geometry.viewport);
+                    } else {
+                        bounds.extend(place.geometry.location);
+                    }
+                });
+
+                map.fitBounds(bounds);
+                marker.setPosition(bounds.getCenter());
+                marker.setVisible(true);
+
+                document.getElementById('searchInput').value = marker.getPosition().lat() + ', ' + marker.getPosition().lng();
+            });
+
+            // Move marker with map drag
+            map.addListener('drag', function() {
+                marker.setPosition(map.getCenter());
+                document.getElementById('searchInput').value = marker.getPosition().lat() + ', ' + marker.getPosition().lng();
+            });
+        }
+
+        function saveLocation() {
+            const location = document.getElementById('searchInput').value;
+            fetch('http://localhost:8080/clinic/saveLocation', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ location: location })
+            })
+            .then(response => response.json())
+            .then(data => alert(data.message))
+            .catch(error => console.error('Error:', error));
+        }
+
+        initMap();
+
+
+</script>
+
+</script>
+</body>
+</html>

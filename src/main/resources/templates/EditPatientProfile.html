@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+  <title>Document</title>
+  <style>
+        body {
+            font-family: 'IBM Plex Sans Arabic';
+            background: linear-gradient(-45deg, #93A5CF , #E4EfE9, #93A5CF , #E4EfE9);
+             background-size: 400% 400%;
+             animation: gradient 15s ease infinite;
+             height: 100vh;
+
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        .container {
+            width: 30%;
+            margin: 100px auto;
+            background-color: #F1FAFA;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            font-family: 'IBM Plex Sans Arabic';
+            font-size: 12px;
+
+        }
+        .con{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        h2 {
+            text-align: center;
+            color: #009cff;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="number"],
+        input[type="date"],
+        select,
+        textarea,
+        button {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 12px;
+            box-sizing: border-box;
+            margin-top: 5px;
+            background-color: #F1FAFA;
+
+        }
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        button {
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 2rem;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+        .success-message {
+            background-color: #5cb85c;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        p{
+            font-weight: lighter;
+            display: flex;
+            justify-content: center;
+        }
+        .submit-button {
+            font-family: 'IBM Plex Sans Arabic';
+            width: 200px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            /* margin: 10px; */
+            margin-top: -100px;
+            margin-bottom: 20px;
+
+        }
+                /* Header styling */
+header {
+    background: rgba(255, 255, 255, .9);
+    backdrop-filter: blur(10px);
+    /* Blur effect */
+    padding: 20px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    /* Shadow */
+    position: sticky;
+    /* Make the header sticky */
+    top: 0;
+    /* Stick it to the top of the viewport */
+    z-index: 1000;
+    /* Ensure it's above other content */
+}
+
+
+/* Navigation styling */
+nav {
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+}
+header {
+    background: #333;
+    color: #fff;
+    padding: 1em 0;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+header nav ul li {
+    margin: 0 1em;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    /* Smooth color transition on hover */
+}
+
+nav ul li a:hover {
+    color: #6d6be4;
+    /* Darker color on hover */
+}
+    </style>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href="/patients/dashboard">حسابك</a></li>
+      <li><a href="/blog/blogs">المدونة</a></li>
+      <li><a href="/patients/Doctor/List">المختصين</a></li>
+      <li><a href="/assessments/viewAssessment">المقاييس</a></li>
+      <li><a href="/homepage">الرئيسية</a></li>
+    </ul>
+  </nav>
+</header>
+<form id="editProfileForm"  enctype="multipart/form-data" th:action="@{'/patients/' + ${patient.email} + '/update'}" method="post">
+  <div class="container">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" th:value="${patient.name}"><br>
+    </div>
+    <div class="form-group">
+      <label for="profilePicture">Profile Picture:</label>
+      <input type="file" id="profilePicture" name="profilePicture"><br>
+    </div>
+    <div class="form-group">
+      <label for="dateOfBirth">Date of Birth (yyyy-MM-dd):</label>
+      <input type="date" id="dateOfBirth" name="dateOfBirth" value="${patient.dateOfBirth ? #dates.format(patient.dateOfBirth, 'yyyy-MM-dd') : ''}" ><br>
+    </div>
+        <div class="form-group">
+      <label for="nationality">Nationality:</label>
+      <input type="text" id="nationality" name="nationality" th:value="${patient.nationality}"><br>
+    </div>
+    <div class="form-group">
+      <label for="country">Country:</label>
+      <input type="text" id="country" name="country" th:value="${patient.country}" ><br>
+    </div>
+    <div class="form-group">
+      <label for="city">City:</label>
+      <input type="text" id="city" name="city" th:value="${patient.city}" ><br>
+    </div>
+    <div class="form-group">
+      <label for="phoneNumber">Phone Number:</label>
+      <input type="text" id="phoneNumber" name="phoneNumber" th:value="${patient.phoneNumber}" ><br>
+    </div>
+    <div class="form-group">
+      <label for="gender">Gender:</label>
+      <input type="text" id="gender" name="gender" th:value="${patient.gender}" ><br>
+    </div>
+    <div class="form-group">
+      <label for="age">Age:</label>
+      <input type="number" id="age" name="age" th:value="${patient.age}" ><br>
+    </div>
+
+  </div>
+  <div class="con">
+    <button type="submit" class="submit-button">Save Changes</button>
+  </div>
+
+</form>
+
+
+</body>
+</html>

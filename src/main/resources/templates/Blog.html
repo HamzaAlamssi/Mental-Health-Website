@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <title>Blog</title>
+  <!--    <link rel="stylesheet" type="text/css" href="style2.css">-->
+  <style>
+        *{
+        text-align: center;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'IBM Plex Sans Arabic';
+    text-decoration: none;
+}
+
+.main_container{
+
+    margin-top: 20px;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+/*-------------------------------C A R D S - SECTION STARTS--------------------*/
+.card_section{
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card{
+
+    background-color: #f6f9ff;
+    margin: 10px;
+    width: 350px;
+    height: 100%;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 3px 2px 14px rgba(44, 67,109,0.4);
+    transition: all 0.3s ease;
+}
+
+
+
+
+.card_image img{
+
+    object-fit: cover;
+    width: 100%;
+    height: 170px;
+}
+
+
+
+.card_panel{
+
+    padding: 1.6rem 1rem 1rem 1rem;
+}
+
+.card_main_title h2{
+
+    font-size: 1.4rem;
+    color: black;
+    font-weight: lighter;
+    text-align: right;
+}
+
+.card_para{
+
+    padding-top: 1rem;
+}
+
+.card_para p {
+
+    font-weight: lighter;
+    text-transform: capitalize;
+    color: #39414a;
+    margin-bottom: 2%;
+}
+
+.card_readmore{
+
+    margin-top: 1rem;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    font-weight: 100;
+    font-family: 'IBM Plex Sans Arabic';
+    background-color: #175aa7;
+    width: fit-content;
+}
+
+
+.card:hover{
+
+    transform: scale(1.03);
+    background: rgb(255,255,255);
+
+    background: linear-gradient(150deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 82%, rgba(186,244,255,1) 100%, rgba(0,211,255,1) 100% );
+}
+
+
+/*-------------------------------C A R D S - SECTION ENDS--------------------*/
+
+/*------------------------------------- HASTAGS SECTION -------------------*/
+
+
+.tags_section ul{
+    list-style: none;
+    color: black;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tags_section ul li{
+
+    margin: 1%;
+    padding: 5px;
+    border-radius: 5px;
+    color: black;
+    font-weight: 100;
+    font-family: 'IBM Plex Sans Arabic';
+    background-color: #d0e6ff;
+    letter-spacing: 1px;
+    width: fit-content;
+}
+a{
+    color: #fff;
+}
+
+/*------------------------------------- HASTAGS SECTION -------------------*/
+
+/* =================== Media - Queries =========================*/
+
+@media only screen and (max-width: 1200px) {
+
+    .card_section{
+
+        justify-content: space-evenly;
+    }
+
+}
+        /* Header styling */
+header {
+    background: rgba(255, 255, 255, .9);
+    backdrop-filter: blur(10px);
+    /* Blur effect */
+    padding: 20px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    /* Shadow */
+    position: sticky;
+    /* Make the header sticky */
+    top: 0;
+    /* Stick it to the top of the viewport */
+    z-index: 1000;
+    /* Ensure it's above other content */
+}
+
+
+/* Navigation styling */
+nav {
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+}
+header {
+    background: #333;
+    color: #fff;
+    padding: 1em 0;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+header nav ul li {
+    margin: 0 1em;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    /* Smooth color transition on hover */
+}
+
+nav ul li a:hover {
+    color: #6d6be4;
+    /* Darker color on hover */
+}
+    </style>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href="/patients/dashboard">حسابك</a></li>
+      <li><a href="/blog/blogs">المدونة</a></li>
+      <li><a href="/patients/Doctor/List">المختصين</a></li>
+      <li><a href="/assessments/viewAssessment">المقاييس</a></li>
+      <li><a href="/homepage">الرئيسية</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!--IF YOU WANT YOU CAN REMOVE THIS MAIN_CONTAINER JUST PASTE THE CARD SECTION AND IT WILL WORK FINE -->
+
+<div class="main_container">
+
+  <!--IF YOU WANT YOU CAN REMOVE THIS MAIN_CONTAINER JUST PASTE THE CARD SECTION AND IT WILL WORK FINE -->
+
+  <div class="card_container">
+    <div class="card_section">
+      <div class="card">
+        <a href="EmotionalDryness.html" >
+          <div class="card_image"><img src="/images/CHILD.png" alt=""></div>
+          <div class="card_panel">
+            <div class="card_main_title"><h2>كيف يؤثر الجفاف العاطفي في الطفولة على التنمية السليمة للإنسان؟</h2></div>
+            <div class="card_para"><p>يمكن أن يتسبب الجفاف العاطفي في مرحلة الطفولة بضرر كبير على صحة الطفل النفسية</p></div>
+            <div class="tags_section">
+              <ul>
+
+                <li>#الطفولة</li>
+                <li>#الجفاف_العاطفي</li>
+                <li>#التنمية</li>
+              </ul>
+            </div>
+            <div class="card_readmore" ><a href="EmotionalDryness.html">قراءة المزيد</a></div>
+          </div>
+        </a>
+      </div>
+
+
+      <div class="card">
+        <a href="AI.html" >
+          <div class="card_image"><img src="/images/AI.png" ></div>
+          <div class="card_panel">
+            <div class="card_main_title"><h2>هل يمكن للذكاء الصناعي أن يكون معالجك النفسي المستقبلي؟</h2></div>
+            <div class="card_para"><p>على مدى العقد الماضي، تم استخدام الذكاء الصناعي لمساعدة البشر </p></div>
+            <div class="tags_section">
+              <ul>
+
+                <li>#الذكاء_الصناعي</li>
+                <li>#AI</li>
+                <li>#معالجة</li>
+              </ul>
+            </div>
+            <div class="card_readmore"><a href="AI.html">قراءة المزيد</a></div>
+          </div>
+        </a>
+      </div>
+
+
+
+      <div class="card">
+        <a href="HealthyRelationships.html" >
+          <div class="card_image"><img src="/images/HEALTYRELATION.jpg" alt=""></div>
+          <div class="card_panel">
+            <div class="card_main_title"><h2>7 نصائح لبناء علاقات صحية مع من حولنا</h2></div><br>
+            <div class="card_para"><p>إنشاء علاقات اجتماعية إيجابية أمر مهم لصحتك ورفاهيتك النفسية والجسدية</p></div>
+            <div class="tags_section">
+              <ul>
+
+                <li>#علاقات</li>
+                <li>#لصحتك</li>
+                <li>#نصائح</li>
+              </ul>
+            </div>
+            <div class="card_readmore"><a href="HealthyRelationships.html">قراءة المزيد</a></div>
+          </div>
+        </a>
+      </div>
+
+
+      <div class="card">
+        <a href="RelationEffectBlog.html" >
+          <div class="card_image"><img src="/images/relationeffect.jpg" alt=""></div>
+          <div class="card_panel">
+            <div class="card_main_title"><h2>كيف تؤثر العلاقات العاطفية على تحسين أو تدهور الصحة النفسية؟</h2></div>
+            <div class="card_para"><p>تؤثر العلاقات الاجتماعية والعاطفية في حياتنا منذ ولادتنا وحتى وفاتنا</p></div>
+            <div class="tags_section"><br>
+              <ul>
+
+                <li>#العلاقات_العاطفية</li>
+                <li>#تحسين</li>
+                <li>#الصحة_النفسية</li>
+              </ul>
+            </div>
+            <div class="card_readmore"><a href="RelationEffectBlog.html">قراءة المزيد</a></div>
+          </div>
+        </a>
+      </div>
+
+
+      <div class="card">
+        <a href="DependentPersonality.html" >
+          <div class="card_image"><img src="/images/HowToSeeMySelf.jpg" alt=""></div>
+          <div class="card_panel">
+            <div class="card_main_title"><h2>اضطراب الشخصية الاعتمادية.. الذي يضع نفسه خلف الآخرين دائماً</h2></div>
+            <div class="card_para"><p>في عالم يحتفي بالاستقلالية والقوة الذاتية، يجد الأشخاص الذين يعانون من اضطراب الشخصية الاعتمادية أنفسهم في مواجهة تحديات فريدة</p></div>
+            <div class="tags_section">
+              <ul>
+
+                <li>#اضطراب_الشخصية</li>
+                <li>#الاعتمادية</li>
+                <li>#الاستقلالية</li>
+              </ul>
+            </div>
+            <div class="card_readmore"><span>قراءة المزيد</span></div>
+          </div>
+        </a>
+      </div>
+
+
+      <div class="card">
+        <a href="NarcissismBlog.html" >
+          <div class="card_image"><img src="/images/ShowSelf.png" alt=""></div>
+          <div class="card_panel">
+            <div class="card_main_title"><h2>يمتلك ذاتاً متضخمة جداً.. ما هي صفات الشخصية النرجسية وكيف يمكن علاجها أو تجنبها؟
+            </h2></div>
+            <div class="card_para"><p>إن مفهوم الشخصية النرجسية يملك تاريخ غني بالأحداث والشخصيات التي غيرت من مفهوم هذه الصفة </p></div>
+            <div class="tags_section">
+              <ul>
+
+                <li>#نرجسية</li>
+                <li>#معالجة</li>
+                <li>#صفات</li>
+              </ul>
+            </div>
+            <div class="card_readmore"><span>قراءة المزيد</span></div>
+          </div>
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="depressionBlog.html" >
+          <div class="card_image"><img src="/images/DEPRESSION1.jpg" alt=""></div>
+          <div class="card_panel">
+            <div class="card_main_title"><h2>كيف أخفف حدة القلق الاجتماعي لدي؟
+            </h2></div>
+            <div class="card_para"><p>يعتبر القلق الاجتماعي أحد الضغوط النفسية التي قد يعاني العديد من الأشخاص بسببها</p></div>
+            <div class="tags_section"><br>
+              <ul>
+
+                <li>#قلق</li>
+                <li>#نصائح</li>
+                <li>#َالعلاقات_الأجتماعية</li>
+              </ul>
+            </div>
+            <div class="card_readmore"><span>قراءة المزيد</span></div>
+          </div>
+        </a>
+      </div>
+
+
+
+      <div class="card">
+        <a href="AnxietyBlog.html" >
+          <div class="card_image"><img src="/images/ANXIETY1.png" alt=""></div>
+          <div class="card_panel">
+            <div class="card_main_title"><h2>هل أنت مكتئب؟ أعراض الاكتئاب الجسدية الأكثر شيوعًا
+            </h2></div>
+            <div class="card_para"><p>الاكتئاب ليس مجرد حالة نفسية، بل يمكن أن يظهر أيضًا من خلال أعراض جسدية متعددة، لذا في هذا المقال</p></div>
+            <div class="tags_section">
+              <ul>
+
+                <li>#اكتئاب</li>
+                <li>#حالة_نفسية</li>
+                <li>#الأعراض</li>
+              </ul>
+            </div>
+            <div class="card_readmore"><a href="AnxietyBlog.html">قراءة المزيد</a></div>
+          </div>
+        </a>
+      </div>
+
+
+
+      <div class="card">
+        <a href="ShyAndAnxietyBlog.html" >
+          <div class="card_image"><img src="/images/SHY.jpg" alt=""></div>
+          <div class="card_panel">
+            <div class="card_main_title"><h2>ما هو الفرق بين القلق الاجتماعي والخجل الاجتماعي؟
+            </h2></div>
+            <div class="card_para"><p>يُعتبر القلق الاجتماعي والخجل الاجتماعي من الظواهر النفسية التي تؤثر على العديد من الأشخاص في المجتمع</p></div>
+            <div class="tags_section">
+              <ul>
+
+                <li>#القلق_</li>
+                <li>#الخجل_</li>
+                <li>#الظواهر_النفسية</li>
+              </ul>
+            </div>
+            <div class="card_readmore"><span>قراءة المزيد</span></div>
+          </div>
+        </a>
+      </div>
+
+
+
+
+      <div class="card">
+        <a href="ReturnToMyLifeBlog.html" >
+          <div class="card_image"><img src="/images/RETURNTOMYLIFE.jpg" alt=""></div>
+          <div class="card_panel">
+            <div class="card_main_title"><h2>كيف أعود إلى حياتي بعد التعافي من الاكتئاب؟</h2></div>
+            <div class="card_para"><p>قد يعاني معظم الأشخاص من مشاعر سلبية نتيجة التعرض لصدمات نفسية مما يؤدي إلى إصابتهم بالاكتئاب</p></div>
+            <div class="tags_section">
+              <ul>
+
+                <li>#اكتئاب</li>
+                <li>#صدمات_نفسية</li>
+                <li>#المشاعر</li>
+              </ul>
+            </div>
+            <div class="card_readmore"><span>قراءة المزيد</span></div>
+          </div>
+        </a>
+      </div>
+
+
+      <div class="card">
+        <a href="self-conscious.html" >
+          <div class="card_image"><img src="/images/IMPROVEMYMIND.jpg" alt=""></div>
+          <div class="card_panel">
+            <div class="card_main_title"><h2>كيف أرفع مستوى الوعي الذاتي لدي؟</h2></div>
+            <div class="card_para"><p>يسمح لنا الوعي الذاتي برؤية أنفسنا بشكل أكثر وضوحًا، وفهم كيفية نظرة الآخرين لنا بشكل أفضل</p></div>
+            <div class="tags_section"><br>
+              <ul>
+
+                <li>#الوعي</li>
+                <li>#الذاتي</li>
+                <li>#معالجة</li>
+              </ul>
+            </div>
+            <div class="card_readmore"><span>قراءة المزيد</span></div>
+          </div>
+        </a>
+      </div>
+      <div class="card">
+        <a href="ObssessiveBlog.html">
+          <div class="card_image"><img src="/images/OBSSESSIVE.jpg" alt=""></div>
+          <div class="card_panel">
+            <div class="card_main_title"><h2>كيف يؤثر الوسواس القهري على الإنتاجية؟</h2></div>
+            <div class="card_para"><p>لا شك أن التحديات اليومية يمكن أن تؤثر على مستوى الإنتاجية والأداء</p></div>
+            <div class="tags_section"><br>
+              <ul>
+
+                <li>#الوسواس</li>
+                <li>#الأنتاجية</li>
+                <li>#القهري</li>
+              </ul>
+            </div>
+            <div class="card_readmore"><span>قراءة المزيد</span></div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Welcome <p th:text="${username}"></p> to Our Website</h1>
+    <p>Please log in or sign up to continue.</p>
+    <a href="/login" class="btn">Login</a>
+    <a href="/signup/doctors" class="btn">Sign Up as Doctor</a>
+    <a href="/signup/patients" class="btn">Sign Up as Patient</a>
+    <a href="/signup/admins" class="btn">Sign Up as Admin</a>
+<!--    <a href="/logout" class="btn">Logout</a>-->
+</div>
+</body>
+</html>

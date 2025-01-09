@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Patient</title>
+    <style>
+        /* styles.css */
+        body {
+            /* font-family: Arial, sans-serif; */
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            background: linear-gradient(135deg,#9AD0C2,#F1FADA);
+
+        }
+        .container {
+            width: 30%;
+            margin: 50px auto;
+            background-color    : #F1FAFA;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .con{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        img{
+            width: 70px;
+            margin-top: -55px;
+           /* // position: absolute; */
+           /* // l/\eft: 39.7rem; */
+           display: flex;
+           align-items: center;
+        }
+
+        h2 {
+            text-align: center;
+            color: #009cff;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="number"],
+        input[type="password"],
+        select,
+        textarea,
+        button {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 12px;
+            box-sizing: border-box;
+            margin-top: 5px;
+            background-color: #F1FAFA;
+
+        }
+
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 2rem;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+        .success-message {
+            background-color: #5cb85c;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        p{
+            font-weight: lighter;
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+<div class="con">
+    <img src="/images/add-friend.png" class="image">
+</div>
+<h2>Sign Up Patient</h2>
+
+<br>
+<form action="#" th:action="@{/signup/patient_signup}" th:object="${patientSignUpRequest}" method="post" id="signup-form" onsubmit="return CheckAll()">
+
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" th:field="*{email}" placeholder="Email" required>
+        <span id="email-message" style="color: red;"></span>
+    </div>
+    <div>
+        <label for="password" >Password:</label>
+        <input type="password"  id="password" th:field="*{password}" placeholder="Password" required>
+    </div>
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" th:field="*{name}" placeholder="Name" required><br>
+    </div>
+    <div class="form-group">
+        <label for="dateOfBirth">Date of Birth:</label>
+        <input type="date" id="dateOfBirth" th:field="*{dateOfBirth}" placeholder="Date of Birth">
+    </div>
+    <div class="form-group">
+        <label for="nationality">Nationality:</label>
+        <input type="text" id="nationality" th:field="*{nationality}" placeholder="Nationality" required><br>
+    </div>
+    <div class="form-group">
+        <label for="phoneNumber">Phone Number:</label>
+        <input type="text" id="phoneNumber" th:field="*{phoneNumber}" placeholder="Phone Number">
+    </div>
+
+    <div class="form-group">
+        <label for="gender">Gender:</label>
+        <select id="gender" th:field="*{gender}" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="country">Country:</label>
+        <input type="text" id="country" th:field="*{country}" placeholder="Country">
+    </div>
+    <div class="form-group">
+    <label for="city">City:</label>
+    <input type="text" id="city" th:field="*{city}" placeholder="City"><br>
+    </div>
+
+    <div>
+        <label for="age">Age:</label>
+        <input type="number" id="age" th:field="*{age}" placeholder="Age"><br>
+    </div>
+
+    <button type="submit" id="submitButton">تسجيل</button>
+    <br>
+    <br>
+    <p><a href="/login"> تسجيل الدخول</a>هل لديك حساب ؟</p>
+
+</form>
+</div>
+
+<script>
+
+
+ function checkPassword(password) {
+        const pattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        return pattern.test(password);
+    }
+
+    function checkAll() {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const phoneNumber = document.getElementById('phoneNumber').value;
+
+    // Check email format
+    const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@(([^<>()[\]\\.,;:\s@"]+\.)+[^<>()[\]\\.,;:\s@"]{2,})$/i;
+    if (!emailRegex.test(email)) {
+        alert("Please enter a valid email.");
+        return false;
+    }
+
+<!--    // Check password strength-->
+<!--    if (!checkPassword(password)) {-->
+<!--        alert('Password must be at least 8 characters long and include at least one letter, one digit, and one special character.');-->
+<!--        return false;-->
+<!--    }-->
+
+    // Check phone number format
+    const phoneRegex = /^\d{10}$/;
+    if (!phoneRegex.test(phoneNumber)) {
+        alert("Please enter a valid 10-digit phone number.");
+        return false;
+    }
+
+
+
+    // All checks passed
+    return true;
+}
+
+
+    window.onload = function() {
+        const form = document.getElementById('specialistForm');
+        form.onsubmit = function(event) {
+            if (!checkAll()) {
+                event.preventDefault(); // Prevent form submission if validation fails
+            }
+        };
+    };
+ document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('signup-form');
+        form.addEventListener('submit', function (event) {
+            if (!checkAll()) {
+                event.preventDefault(); // Prevent form submission if validation fails
+            }
+        });
+    });
+
+
+
+    document.getElementById('email').addEventListener('blur', function () {
+        const email = this.value.trim();
+        if (email !== '') {
+            checkEmailAvailability(email);
+        }
+    });
+
+    function checkEmailAvailability(email) {
+        fetch(`/check/patient/check-email?email=${email}`)
+            .then(response => response.json())
+            .then(data => {
+                const messageElement = document.getElementById('email-message');
+                const submitButton = document.getElementById('submitButton');
+                if (data === true) {
+                    messageElement.textContent = 'Email already exists.';
+                    submitButton.disabled = true;
+                } else {
+                    messageElement.textContent = '';
+                    submitButton.disabled = false;
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    }
+</script>
+</body>
+</html>

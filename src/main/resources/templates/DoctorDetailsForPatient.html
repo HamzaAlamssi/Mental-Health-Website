@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title th:text="${doctor.name}">Doctor Details</title>
+</head>
+<body>
+<img th:src="${doctor != null && doctor.profilePictureContent != null ? '/patients/' + doctor.email + '/profile-picture/doctor' : '/images/userimg.png'}" alt="Profile Picture">
+<h1 th:text="'Details of Dr. ' + ${doctor.name}">Doctor Details</h1>
+<p>Years of Experience: <span th:text="${doctor.yearsOfExperience}">...</span></p>
+<p>Session Price: $<span th:text="${doctor.sessionPrice}">...</span></p>
+<h3 th:text="'Job Title: ' + ${doctor.jobTitle}"></h3>
+<p>About Dr. <span th:text="${doctor.name}">...</span>:</p>
+<p th:text="${doctor.aboutTheDoctor}">...</p>
+<h2>Available Appointments:</h2>
+<ul>
+  <li th:each="appointment : ${appointments}">
+    <span th:text="${appointment.session}">Appointment Date and Time</span>
+    <form th:if="${!appointment.booked}" th:action="@{'/patients/book/' + ${appointment.id}}" method="post">
+      <button type="submit">Book Appointment</button>
+    </form>
+    <span th:if="${appointment.booked}">Already Booked</span>
+  </li>
+</ul>
+</body>
+</html>

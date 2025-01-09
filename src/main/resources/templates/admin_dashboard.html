@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        /* Instagram-like profile page */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fafafa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .profile-info {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .profile-info img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+            object-fit: cover;
+            border: 4px solid #fff; /* Add a border to the image */
+        }
+        .profile-info h2 {
+            margin: 0;
+        }
+        .profile-info p {
+            margin: 5px 0;
+        }
+        .edit-profile-btn {
+            background-color: #3897f0;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .edit-profile-btn:hover {
+            background-color: #2687d7;
+        }
+        nav {
+            background-color: #333;
+            padding: 10px 0;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        nav ul {
+            list-style: none;
+            text-align: center;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            font-weight: bold;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        nav ul li a:hover {
+            color: #6d6be4;
+            text-decoration: none;
+        }
+        i {
+            margin-left: -30px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav>
+        <ul>
+            <li><a href="/admins/AdminDash">المختصين</a></li>
+            <li><a href="/admins/dashboard">حسابك</a></li>
+        </ul>
+    </nav>
+</header>
+<div class="container">
+    <div class="profile-info">
+        <h2>Patient Name: <span th:text="${admin != null ? admin.name : 'Patient Name'}"></span></h2>
+        <p>Nationality: <span th:text="${patient != null ? admin.nationality : 'Nationality'}"></span></p>
+        <p>Phone Number: <span th:text="${patient != null ? admin.phoneNumber : 'Phone Number'}"></span></p>
+<!--        <p>Address: <span th:text="${patient != null ? admin.address : 'Address'}"></span></p>-->
+        <p>Gender: <span th:text="${patient != null ? admin.gender : 'Gender'}"></span></p>
+        <p>Age: <span th:text="${patient != null ? admin.age : 'Age'}"></span></p>
+        <p>Country: <span th:text="${patient != null ? admin.country : 'Country'}"></span></p>
+        <p>City: <span th:text="${patient != null ? admin.city : 'City'}"></span></p>
+        <button class="edit-profile-btn" id="editProfileBtn">Edit Profile</button>
+    </div>
+
+    <!-- Edit Profile Form (Initially hidden) -->
+    <form id="editProfileForm" style="display: none;" enctype="multipart/form-data" th:action="@{'/admins/' + ${admin.email} + '/update'}"
+          method="post">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" th:value="${admin.name}" required><br>
+        <label for="nationality">Nationality:</label><br>
+        <input type="text" id="nationality" name="nationality" th:value="${admin.nationality}" required><br>
+        <label for="phoneNumber">Phone Number:</label><br>
+        <input type="text" id="phoneNumber" name="phoneNumber" th:value="${admin.phoneNumber}" required><br>
+<!--        <label for="address">Address:</label><br>-->
+<!--        <input type="text" id="address" name="address" th:value="${admin.address}" required><br>-->
+
+        <label for="gender">Gender:</label><br>
+        <select id="gender" name="gender" required>
+            <option th:value="Male" th:text="'Male'" th:if="${admin.gender == 'Male'}" selected>Male</option>
+            <option th:value="Male" th:text="'Male'" th:unless="${admin.gender == 'Male'}">Male</option>
+            <option th:value="Female" th:text="'Female'" th:if="${admin.gender == 'Female'}" selected>Female</option>
+            <option th:value="Female" th:text="'Female'" th:unless="${admin.gender == 'Female'}">Female</option>
+        </select><br>
+
+        <label for="age">Age:</label><br>
+        <input type="number" id="age" name="age" th:value="${admin.age}" required><br>
+        <label for="country">Country:</label><br>
+        <input type="text" id="country" name="country" th:value="${admin.country}" required><br>
+        <label for="city">City:</label><br>
+        <input type="text" id="city" name="city" th:value="${admin.city}" required><br>
+        <button type="submit">Save Changes</button>
+    </form>
+</div>
+
+<script>
+    // Toggle visibility of edit profile form
+    document.getElementById("editProfileBtn").addEventListener("click", function() {
+        var editForm = document.getElementById("editProfileForm");
+        editForm.style.display = editForm.style.display === "none" ? "block" : "none";
+    });
+</script>
+</body>
+</html>
