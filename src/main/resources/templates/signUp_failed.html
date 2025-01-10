@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Failed</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            text-decoration: none;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right,#9AD0C2,#F1FADA);
+
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 150px auto;
+            padding: 20px;
+            background-color:#9AD0C2;
+            border-radius: 5px;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            margin-top: 0;
+            color: white;
+        }
+
+        form {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #2d9596;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #265073;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 style="text-align: center">فشل انشاء الحساب</h1>
+    <p style="color: white; text-align: right;">عذرًا، البريد الإلكتروني أو كلمة المرور الخاصة بك غير صحيحة أو موجودة بالفعل.</p>
+
+    <form action="/login" method="get">
+        <button style="font-size: 15px" type="submit">تسجيل الدخول مرة أخرى</button>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doctor Lists</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+        .card {
+            margin-bottom: 20px;
+        }
+         nav {
+            background-color: #333;
+            padding: 10px 0;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        nav ul {
+            list-style: none;
+            text-align: center;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            font-weight: bold;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        nav ul li a:hover {
+            color: #6d6be4;
+            text-decoration: none;
+        }
+        i {
+            margin-left: -30px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href="/admins/AdminDash">المختصين</a></li>
+      <li><a href="/admins/dashboard">حسابك</a></li>
+    </ul>
+  </nav>
+</header>
+<div class="container">
+  <div th:text="${message}" class="success-message"></div>
+  <h1>Doctors who submitted the application</h1>
+  <!-- Search form for submitted doctors -->
+  <form th:action="@{/admins/searchRequestedDoctors}" method="post">
+    <div class="form-group">
+      <label for="submittedDoctorEmail">Search by Email:</label>
+      <input type="text" class="form-control" id="submittedDoctorEmail" name="email" placeholder="Enter email">
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+  </form>
+  <div class="row">
+    <div class="col-md-6">
+
+      <!-- Submitted doctor list -->
+      <div th:each="doctor : ${requestedDoctors}" class="card">
+        <div class="card-body">
+          <h5 class="card-title" th:text="${doctor.Name}"></h5>
+          <a th:href="@{'/admins/doctorDetails/' + ${doctor.email}}">View Details</a>
+          <a th:href="@{'/admins/acceptDoctor/' + ${doctor.email}}">Accept Doctor</a>
+          <a th:href="@{'/admins/rejectDoctor/' + ${doctor.email}}">Reject Doctor</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <h1>Doctors who are on the system</h1>
+  <!-- Search form for system doctors -->
+  <form th:action="@{/admins/searchSystemDoctors}" method="post">
+    <div class="form-group">
+      <label for="systemDoctorEmail">Search by Email:</label>
+      <input type="text" class="form-control" id="systemDoctorEmail" name="email" placeholder="Enter email">
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+  </form>
+  <div class="row">
+    <div class="col-md-6">
+
+      <!-- System doctor list -->
+      <div th:each="doctor : ${systemDoctors}" class="card">
+        <div class="card-body">
+          <h5 class="card-title" th:text="${doctor.name}"></h5>
+          <a th:href="@{'/admins/doctorDetails/' + ${doctor.email}}">View Details</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

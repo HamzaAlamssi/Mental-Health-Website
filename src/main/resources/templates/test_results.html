@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Result</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg,#9AD0C2,#F1FADA);
+            color: #0d47a1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        * {
+            box-sizing: border-box;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            text-decoration: none;
+        }
+        .result {
+            background: linear-gradient(135deg,#9AD0C2,#F1FADA);
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #b0bec5;
+            border-radius: 5px;
+            width: 100%;
+            background-color: white;
+        }
+        h2 {
+            text-align: center;
+            color: #0d47a1;
+        }
+        .score {
+            text-align: center;
+            font-size: 20px;
+            color: #0d47a1;
+        }
+        .category {
+            text-align: center;
+            font-size: 18px;
+            color: #0d47a1;
+        }
+        a {
+            color: #0d47a1;
+            text-decoration: none;
+        }
+        a:hover {
+            color: #4caf50;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="result">
+    <h2>نتيجة الاختبار</h2>
+    <p class="score"> <span th:text="${totalScore}"></span>:نتيجة اختبار</p>
+    <p class="category"><span th:text="${category}"></span>:فئة الأعراض</p>
+
+</div>
+<br>
+<br>
+<br>
+<a href="/homepage" ><h2>الرجوع الى الرئيسية</h2></a>
+</body>
+</html>

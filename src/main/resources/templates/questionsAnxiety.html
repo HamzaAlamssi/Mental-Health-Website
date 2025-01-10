@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic&display=swap" rel="stylesheet">
+
+    <title>Depression Test</title>
+    <style>
+        body {
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-family: 'Noto Sans Arabic', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right,#9AD0C2,#F1FADA);
+            text-align: right;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #F1FAFA;
+        }
+
+        .question {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+
+        h2 {
+            margin-top: 0;
+            direction: rtl;
+            unicode-bidi: bidi-override;
+        }
+
+        .options {
+            margin-bottom: 20px;
+        }
+
+        .options label {
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            text-align: left;
+            margin-bottom: 0.5rem;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .nav-buttons {
+            margin-top: 20px;
+            text-align: right;
+        }
+
+        .nav-buttons button {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <form id="anxietyTestForm" action="/assessments/submitTest" method="post">
+        <div id="questions">
+            <input type="hidden" name="assessmentName" value="Anxiety">
+            <div class="question active" id="question1">
+                <h2>1. الشعور بالتوتر أو القلق أو التوتر</h2>
+                <div class="options">
+                    <label for="q1-option1" class="link">مُطْلَقاً</label>
+                    <input type="radio" id="q1-option1" name="answer1" value="0">
+                    <br><br>
+                    <label for="q1-option2" class="link">عدة أيام</label>
+                    <input type="radio" id="q1-option2" name="answer1" value="1">
+                    <br><br>
+                    <label for="q1-option3" class="link">أكثر من نصف الأيام</label>
+                    <input type="radio" id="q1-option3" name="answer1" value="2">
+                    <br><br>
+                    <label for="q1-option4" class="link">تقريبا كل يوم</label>
+                    <input type="radio" id="q1-option4" name="answer1" value="3">
+                </div>
+                <div class="nav-buttons">
+                    <button type="button" onclick="checkIfUserAnswer(1)">Next</button>
+                </div>
+            </div>
+            <div class="question" id="question2">
+                <h2>2. عدم القدرة على التوقف أو السيطرة على القلق</h2>
+                <div class="options">
+                    <label for="q2-option1" class="link">مُطْلَقاً</label>
+                    <input type="radio" id="q2-option1" name="answer2" value="0">
+                    <br><br>
+                    <label for="q2-option2" class="link">عدة أيام</label>
+                    <input type="radio" id="q2-option2" name="answer2" value="1">
+                    <br><br>
+                    <label for="q2-option3" class="link">أكثر من نصف الأيام</label>
+                    <input type="radio" id="q2-option3" name="answer2" value="2">
+                    <br><br>
+                    <label for="q2-option4" class="link">تقريبا كل يوم</label>
+                    <input type="radio" id="q2-option4" name="answer2" value="3">
+                </div>
+                <div class="nav-buttons">
+                    <button type="button" onclick="checkIfUserAnswer(2)">Next</button>
+                    <button type="button" onclick="backQuestion(2)">Back</button>
+                </div>
+            </div>
+            <div class="question" id="question3">
+                <h2>3. القلق الشديد بشأن أشياء مختلفة</h2>
+                <div class="options">
+                    <label for="q3-option1" class="link">مُطْلَقاً</label>
+                    <input type="radio" id="q3-option1" name="answer3" value="0">
+                    <br><br>
+                    <label for="q3-option2" class="link">عدة أيام</label>
+                    <input type="radio" id="q3-option2" name="answer3" value="1">
+                    <br><br>
+                    <label for="q3-option3" class="link">أكثر من نصف الأيام</label>
+                    <input type="radio" id="q3-option3" name="answer3" value="2">
+                    <br><br>
+                    <label for="q3-option4" class="link">تقريبا كل يوم</label>
+                    <input type="radio" id="q3-option4" name="answer3" value="3">
+                </div>
+                <div class="nav-buttons">
+                    <button type="button" onclick="checkIfUserAnswer(3)">Next</button>
+                    <button type="button" onclick="backQuestion(3)">Back</button>
+                </div>
+            </div>
+            <div class="question" id="question4">
+                <h2>4. صعوبة في الاسترخاء</h2>
+                <div class="options">
+                    <label for="q4-option1" class="link">مُطْلَقاً</label>
+                    <input type="radio" id="q4-option1" name="answer4" value="0">
+                    <br><br>
+                    <label for="q4-option2" class="link">عدة أيام</label>
+                    <input type="radio" id="q4-option2" name="answer4" value="1">
+                    <br><br>
+                    <label for="q4-option3" class="link">أكثر من نصف الأيام</label>
+                    <input type="radio" id="q4-option3" name="answer4" value="2">
+                    <br><br>
+                    <label for="q4-option4" class="link">تقريبا كل يوم</label>
+                    <input type="radio" id="q4-option4" name="answer4" value="3">
+                </div>
+                <div class="nav-buttons">
+                    <button type="button" onclick="checkIfUserAnswer(4)">Next</button>
+                    <button type="button" onclick="backQuestion(4)">Back</button>
+                </div>
+            </div>
+            <div class="question" id="question5">
+                <h2>5. الشعور بالقلق الشديد بحيث يصعب الجلوس ساكنًا</h2>
+                <div class="options">
+                    <label for="q5-option1" class="link">مُطْلَقاً</label>
+                    <input type="radio" id="q5-option1" name="answer5" value="0">
+                    <br><br>
+                    <label for="q5-option2" class="link">عدة أيام</label>
+                    <input type="radio" id="q5-option2" name="answer5" value="1">
+                    <br><br>
+                    <label for="q5-option3" class="link">أكثر من نصف الأيام</label>
+                    <input type="radio" id="q5-option3" name="answer5" value="2">
+                    <br><br>
+                    <label for="q5-option4" class="link">تقريبا كل يوم</label>
+                    <input type="radio" id="q5-option4" name="answer5" value="3">
+                </div>
+                <div class="nav-buttons">
+                    <button type="button" onclick="checkIfUserAnswer(5)">Next</button>
+                    <button type="button" onclick="backQuestion(5)">Back</button>
+                </div>
+            </div>
+            <div class="question" id="question6">
+                <h2>6. سهولة الانزعاج أو الانفعال</h2>
+                <div class="options">
+                    <label for="q6-option1" class="link">مُطْلَقاً</label>
+                    <input type="radio" id="q6-option1" name="answer6" value="0">
+                    <br><br>
+                    <label for="q6-option2" class="link">عدة أيام</label>
+                    <input type="radio" id="q6-option2" name="answer6" value="1">
+                    <br><br>
+                    <label for="q6-option3" class="link">أكثر من نصف الأيام</label>
+                    <input type="radio" id="q6-option3" name="answer6" value="2">
+                    <br><br>
+                    <label for="q6-option4" class="link">تقريبا كل يوم</label>
+                    <input type="radio" id="q6-option4" name="answer6" value="3">
+                </div>
+                <div class="nav-buttons">
+                    <button type="button" onclick="checkIfUserAnswer(6)">Next</button>
+                    <button type="button" onclick="backQuestion(6)">Back</button>
+                </div>
+            </div>
+            <div class="question" id="question7">
+                <h2>7. الشعور بالخوف، وكأن شيئاً فظيعاً قد يحدث</h2>
+                <div class="options">
+                    <label for="q7-option1" class="link">مُطْلَقاً</label>
+                    <input type="radio" id="q7-option1" name="answer7" value="0">
+                    <br><br>
+                    <label for="q7-option2" class="link">عدة أيام</label>
+                    <input type="radio" id="q7-option2" name="answer7" value="1">
+                    <br><br>
+                    <label for="q7-option3" class="link">أكثر من نصف الأيام</label>
+                    <input type="radio" id="q7-option3" name="answer7" value="2">
+                    <br><br>
+                    <label for="q7-option4" class="link">تقريبا كل يوم</label>
+                    <input type="radio" id="q7-option4" name="answer7" value="3">
+                </div>
+                <div class="nav-buttons">
+                    <button type="button" onclick="backQuestion(7)">Back</button>
+                    <button type="button" onclick="GoToResult()">Submit</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+        function checkIfUserAnswer(currentQuestion){
+            var checkifanswer = document.querySelector('input[name="answer' + currentQuestion + '"]:checked');
+            if(checkifanswer){
+                nextQuestion(currentQuestion);
+            } else {
+                alert("please answer this question");
+            }
+        }
+
+        function nextQuestion(currentQuestion){
+            var nextQuestion = currentQuestion + 1;
+            var currentQuestionDiv = document.getElementById("question" + currentQuestion);
+            var nextQuestionDiv = document.getElementById("question" + nextQuestion);
+
+            if (nextQuestionDiv) {
+                currentQuestionDiv.classList.remove("active");
+                nextQuestionDiv.classList.add("active");
+            } else {
+                alert("You have answered all questions!");
+            }
+        }
+
+        function backQuestion(currentQuestion) {
+            var prevQuestion = currentQuestion - 1;
+            var currentQuestionDiv = document.getElementById("question" + currentQuestion);
+            var prevQuestionDiv = document.getElementById("question" + prevQuestion);
+
+            if (prevQuestionDiv) {
+                currentQuestionDiv.classList.remove("active");
+                prevQuestionDiv.classList.add("active");
+            } else {
+                alert("You are already at the first question!");
+            }
+        }
+
+        function GoToResult() {
+            document.getElementById("anxietyTestForm").submit();
+        }
+    </script>
+</body>
+</html>

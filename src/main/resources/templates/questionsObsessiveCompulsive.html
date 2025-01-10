@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic&display=swap" rel="stylesheet">
+
+    <title>Obsessive Compulsive Test</title>
+    <style>
+        body {
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-family: 'Noto Sans Arabic', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right,#9AD0C2,#F1FADA);
+            text-align: right;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #F1FAFA;
+        }
+
+        .question {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+
+        h2 {
+            margin-top: 0;
+            direction: rtl;
+            unicode-bidi: bidi-override;
+        }
+
+        .options {
+            margin-bottom: 20px;
+        }
+
+        .options label {
+            /* display: block; */
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            text-align: left;
+            margin-bottom: 0.5rem;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .nav-buttons {
+            margin-top: 20px;
+            text-align: right;
+        }
+
+        .nav-buttons button {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="questions">
+            <div class="question active" id="question1">
+                <!-- <h2>1. Feeling nervous, anxious, or on edge</h2> -->
+                <h2>1. هل تقلق بشأن الجراثيم أو المرض أو الموت؟
+                </h2>
+                <div class="options" >
+                  <label for="q1-option1" class="link"> أبداً</label>  
+                  <input type="radio" id="q1-option1" name="group1" value="0">
+                    <!-- <label for="q1-option1" class="link">NEARLY EVERY DAY</label> -->
+                    <br>
+                    <br>
+                    <label for="q1-option2" class="link">أحيانا</label>
+                    <input type="radio" id="q1-option2" name="group1" value="1">
+                    <!-- <label for="q1-option2" class="link">SEVERAL DAYS</label> -->
+                    <br>
+                    <br>
+                    <label for="q1-option3" class="link">دائماً</label>
+                    <input type="radio" id="q1-option3" name="group1" value="2">
+                    <!-- <label for="q1-option3" class="link">MORE THAN HALF THE DAYS</label> -->
+  
+                    <!-- <label for="q1-option4" class="link">NOT AT ALL</label> -->
+
+                </div>
+                <div class="nav-buttons">
+                    <button onclick="checkIfUserAnswer(1)">Next</button>
+                </div>
+            </div>
+            <div class="question" id="question2">
+                <!-- <h2>2. Not being able to stop or control worrying</h2> -->
+                <h2>2. هل لديك مخاوف شديدة من حدوث أشياء سيئة أو القيام بشيء خاطئ؟
+                </h2>
+                <div class="options">
+                  <label for="q2-option1" class="link">  أبداً</label>
+                  <input type="radio" id="q2-option1" name="group2" value="0">
+                    <!-- <label for="q2-option1" class="link">NEARLY EVERY DAY</label> -->
+                    <br>
+                    <br>
+                    <label for="q2-option2" class="link">أحيانا</label>
+                    <input type="radio" id="q2-option2" name="group2" value="1">
+                    <!-- <label for="q2-option2" class="link">SEVERAL DAYS</label> -->
+                    <br>
+                    <br>
+                    <label for="q2-option3" class="link">دائماً</label>
+                    <input type="radio" id="q2-option3" name="group2" value="2">
+                    <!-- <label for="q2-option3" class="link">MORE THAN HALF THE DAYS</label> -->
+                   
+                    <!-- <label for="q2-option4" class="link">NOT AT ALL</label> -->
+                </div>
+                <div class="nav-buttons">
+                  <button onclick="checkIfUserAnswer(2)">Next</button>
+                    <button onclick="backQuestion(2)">Back</button>
+                </div>
+            </div>
+            <div class="question" id="question3">
+                <!-- <h2>3. Worrying too much about different things</h2> -->
+                <h2>3. هل تشعر أن الأمور يجب أن تكون "صحيحة تمامًا"؟
+                </h2>
+                <div class="options">
+                  <label for="q3-option1" class="link">أبداً</label>
+                  <input type="radio" id="q3-option1" name="group3" value="0">
+                    <!-- <label for="q3-option1" class="link">NEARLY EVERY DAY</label> -->
+                    <br>
+                    <br>
+                    <label for="q3-option2" class="link">أحيانا</label>
+                    <input type="radio" id="q3-option2" name="group3" value="1">
+                    <!-- <label for="q3-option2" class="link">SEVERAL DAYS</label> -->
+                    <br>
+                    <br>
+                    <label for="q3-option3" class="link">دائماً</label>
+                    <input type="radio" id="q3-option3" name="group3" value="2">
+                    <!-- <label for="q3-option3" class="link">MORE THAN HALF THE DAYS</label> -->
+                   
+                    <!-- <label for="q3-option4" class="link">NOT AT ALL</label> -->
+                </div>
+                <div class="nav-buttons">
+                  <button onclick="checkIfUserAnswer(3)">Next</button>
+                    <button onclick="backQuestion(3)">Back</button>
+                </div>
+            </div>
+            <div class="question" id="question4">
+                <!-- <h2>4. Trouble relaxing</h2> -->
+                <!-- <h2>4. I am easily irritated by small problems, or by my co-workers and team.</h2> -->
+                <h2>4. هل تراودك أفكار أو صور مزعجة وغير مرغوب فيها حول إيذاء الآخرين، ولكنك لا تريد أن تؤذي أحداً؟
+                </h2>
+                <div class="options">
+                  <label for="q4-option1" class="link">أبداً</label>
+                    <input type="radio" id="q4-option1" name="group4" value="0">
+                    <!-- <label for="q4-option1" class="link">NEARLY EVERY DAY</label> -->
+                    <br>
+                    <br>
+                    <label for="q4-option2" class="link">أحيانا</label>
+                    <input type="radio" id="q4-option2" name="group4" value="1">
+                    <!-- <label for="q4-option2" class="link">SEVERAL DAYS</label> -->
+                    <br>
+                    <br>
+                    <label for="q4-option3" class="link">دائماً</label>
+                    <input type="radio" id="q4-option3" name="group4" value="2">
+                    <!-- <label for="q4-option3" class="link">MORE THAN HALF THE DAYS</label> -->
+                  
+                    <!-- <label for="q4-option4" class="link">NOT AT ALL</label> -->
+                </div>
+                <div class="nav-buttons">
+                  <button onclick="checkIfUserAnswer(4)">Next</button>
+                    <button onclick="backQuestion(4)">Back</button>
+                </div>
+            </div>
+            <div class="question" id="question5">
+                <!-- <h2>5. Being so restless that it is hard to sit still</h2> -->
+                <h2>5. هل تراودك أفكار أو صور مزعجة وغير مرغوب فيها ذات طبيعة جنسية؟
+                </h2>
+                <div class="options">
+                  <label for="q5-option1" class="link">أبداً</label>
+                    <input type="radio" id="q5-option1" name="group5" value="0">
+                    <!-- <label for="q5-option1" class="link">NEARLY EVERY DAY</label> -->
+                    <br>
+                    <br>
+                    <label for="q5-option2" class="link">أحيانا</label>
+                    <input type="radio" id="q5-option2" name="group5" value="1">
+                    <!-- <label for="q5-option2" class="link">SEVERAL DAYS</label> -->
+                    <br>
+                    <br>
+                    <label for="q5-option3" class="link">دائماً</label>
+                    <input type="radio" id="q5-option3" name="group5" value="2">
+                    <!-- <label for="q5-option3" class="link">MORE THAN HALF THE DAYS</label> -->
+                   
+                </div>
+                <div class="nav-buttons">
+                  <button onclick="checkIfUserAnswer(5)">Next</button>
+                    <button onclick="backQuestion(5)">Back</button>
+                </div>
+            </div>
+            <div class="question" id="question6">
+                <!-- <h2>6. Becoming easily annoyed or irritable</h2> -->
+                <h2>6. هل تقلق كثيرًا بشأن فعل الشيء الخطأ؟
+                </h2>
+                <div class="options">
+                  <label for="q6-option1" class="link">أبداً</label>
+                    <input type="radio" id="q6-option1" name="group6" value="0">
+                    <!-- <label for="q6-option1" class="link">NEARLY EVERY DAY</label> -->
+                    <br>
+                    <br>
+                    <label for="q6-option2" class="link">أحيانا</label>
+                    <input type="radio" id="q6-option2" name="group6" value="1">
+                    <!-- <label for="q6-option2" class="link">SEVERAL DAYS</label> -->
+                    <br>
+                    <br>
+                    <label for="q6-option3" class="link">دائماً</label>
+                    <input type="radio" id="q6-option3" name="group6" value="2">
+                    <!-- <label for="q6-option3" class="link">MORE THAN HALF THE DAYS</label> -->
+         
+                </div>
+                <div class="nav-buttons">
+                  <button onclick="checkIfUserAnswer(6)">Next</button>
+                    <button onclick="backQuestion(6)">Back</button>
+                </div>
+            </div>
+            <div class="question" id="question7">
+              <!-- <h2>6. Becoming easily annoyed or irritable</h2> -->
+              <h2>7. هل تنزعج من الأفكار التي تجدها محرجة أو مقززة؟
+              </h2>
+              <div class="options">
+                <label for="q7-option1" class="link">أبداً</label>
+                  <input type="radio" id="q7-option1" name="group7" value="0">
+                  <!-- <label for="q7-option1" class="link">NEARLY EVERY DAY</label> -->
+                  <br>
+                  <br>
+                  <label for="q7-option2" class="link">أحيانا</label>
+                  <input type="radio" id="q7-option2" name="group7" value="1">
+                  <!-- <label for="q7-option2" class="link">SEVERAL DAYS</label> -->
+                  <br>
+                  <br>
+                  <label for="q7-option3" class="link">دائماً</label>
+                  <input type="radio" id="q7-option3" name="group7" value="2">
+                  <!-- <label for="q7-option3" class="link">MORE THAN HALF THE DAYS</label> -->
+         
+              </div>
+              <div class="nav-buttons">
+                <button onclick="checkIfUserAnswer(7)">Next</button>
+                  <button onclick="backQuestion(7)">Back</button>
+              </div>
+          </div>
+          <div class="question" id="question8">
+            <!-- <h2>8. Becoming easily annoyed or irritable</h2> -->
+            <h2>8. هل تقوم بالفحص المفرط (إعادة التحقق من أن الباب مغلق وأن الفرن مطفأ)؟
+            </h2>
+            <div class="options">
+              <label for="q8-option1" class="link">أبداً</label>
+                <input type="radio" id="q8-option1" name="group8" value="0">
+                <!-- <label for="q8-option1" class="link">NEARLY EVERY DAY</label> -->
+                <br>
+                <br>
+                <label for="q8-option2" class="link">أحيانا</label>
+                <input type="radio" id="q8-option2" name="group8" value="1">
+                <!-- <label for="q8-option2" class="link">SEVERAL DAYS</label> -->
+                <br>
+                <br>
+                <label for="q8-option3" class="link">دائماً</label>
+                <input type="radio" id="q8-option3" name="group8" value="2">
+                <!-- <label for="q8-option3" class="link">MORE THAN HALF THE DAYS</label> -->
+            
+            </div>
+            <div class="nav-buttons">
+              <button onclick="checkIfUserAnswer(8)">Next</button>
+                <button onclick="backQuestion(8)">Back</button>
+            </div>
+        </div>
+        <div class="question" id="question9">
+          <!-- <h2>9. Becoming easily annoyed or irritable</h2> -->
+          <h2>9. هل تقوم بالغسيل و/أو التنظيف بشكل مفرط؟
+          </h2>
+          <div class="options">
+            <label for="q9-option1" class="link">أبداً</label>
+              <input type="radio" id="q9-option1" name="group9" value="0">
+              <!-- <label for="q9-option1" class="link">NEARLY EVERY DAY</label> -->
+              <br>
+              <br>
+              <label for="q9-option2" class="link">أحيانا</label>
+              <input type="radio" id="q9-option2" name="group9" value="1">
+              <!-- <label for="q9-option2" class="link">SEVERAL DAYS</label> -->
+              <br>
+              <br>
+              <label for="q9-option3" class="link">دائماً</label>
+              <input type="radio" id="q9-option3" name="group9" value="2">
+              <!-- <label for="q9-option3" class="link">MORE THAN HALF THE DAYS</label> -->
+       
+          </div>
+          <div class="nav-buttons">
+            <button onclick="checkIfUserAnswer(9)">Next</button>
+              <button onclick="backQuestion(9)">Back</button>
+          </div>
+      </div>
+      <div class="question" id="question10">
+        <!-- <h2>9. Becoming easily annoyed or irritable</h2> -->
+        <h2>01. هل تكرر الأفعال حتى تصبح "صحيحة" أم تبدأ الأمور من جديد؟
+        </h2>
+        <div class="options">
+          <label for="q10-option1" class="link">أبداً</label>
+            <input type="radio" id="q10-option1" name="group10" value="0">
+            <!-- <label for="q10-option1" class="link">NEARLY EVERY DAY</label> -->
+            <br>
+            <br>
+            <label for="q10-option2" class="link">أحيانا</label>
+            <input type="radio" id="q10-option2" name="group10" value="1">
+            <!-- <label for="q10-option2" class="link">SEVERAL DAYS</label> -->
+            <br>
+            <br>
+            <label for="q10-option3" class="link">دائماً</label>
+            <input type="radio" id="q10-option3" name="group10" value="2">
+            <!-- <label for="q10-option3" class="link">MORE THAN HALF THE DAYS</label> -->
+        
+        </div>
+        <div class="nav-buttons">
+          <button onclick="checkIfUserAnswer(10)">Next</button>
+            <button onclick="backQuestion(10)">Back</button>
+        </div>
+    </div>
+    <div class="question" id="question11">
+      <!-- <h2>11. Becoming easily annoyed or irritable</h2> -->
+      <h2>11. هل تقوم بطلب أو ترتيب الأشياء أو العناصر؟
+      </h2>
+      <div class="options">
+        <label for="q11-option1" class="link">أبداً</label>
+          <input type="radio" id="q11-option1" name="group11" value="0">
+          <!-- <label for="q11-option1" class="link">NEARLY EVERY DAY</label> -->
+          <br>
+          <br>
+          <label for="q11-option2" class="link">أحيانا</label>
+          <input type="radio" id="q11-option2" name="group11" value="1">
+          <!-- <label for="q11-option2" class="link">SEVERAL DAYS</label> -->
+          <br>
+          <br>
+          <label for="q11-option3" class="link">دائماً</label>
+          <input type="radio" id="q11-option3" name="group11" value="2">
+          <!-- <label for="q11-option3" class="link">MORE THAN HALF THE DAYS</label> -->
+     
+      </div>
+      <div class="nav-buttons">
+        <button onclick="checkIfUserAnswer(11)">Next</button>
+          <button onclick="backQuestion(11)">Back</button>
+      </div>
+  </div>
+  <div class="question" id="question12">
+    <!-- <h2>12. Becoming easily annoyed or irritable</h2> -->
+    <h2>21. هل تحتاج إلى طمأنينة مفرطة (على سبيل المثال، السؤال الدائم: "هل أنت متأكد من أنني سأكون بخير؟")؟
+    </h2>
+    <div class="options">
+      <label for="q12-option1" class="link">أبداً</label>
+        <input type="radio" id="q12-option1" name="group12" value="0">
+        <!-- <label for="q12-option1" class="link">NEARLY EVERY DAY</label> -->
+        <br>
+        <br>
+        <label for="q12-option2" class="link">أحيانا</label>
+        <input type="radio" id="q12-option2" name="group12" value="1">
+        <!-- <label for="q12-option2" class="link">SEVERAL DAYS</label> -->
+        <br>
+        <br>
+        <label for="q12-option3" class="link">دائماً</label>
+        <input type="radio" id="q12-option3" name="group12" value="2">
+        <!-- <label for="q12-option3" class="link">MORE THAN HALF THE DAYS</label> -->
+  
+    </div>
+    <div class="nav-buttons">
+      <button onclick="checkIfUserAnswer(12)">Next</button>
+        <button onclick="backQuestion(12)">Back</button>
+    </div>
+</div>
+  <div class="question" id="question13">
+                <!-- <h2>13. Becoming easily annoyed or irritable</h2> -->
+                <h2>31. هل تقضي أكثر من 3 ساعات يومياً في محاربة الوساوس أو الأفعال القهرية؟                </h2>
+                <div class="options">
+                  <label for="q13-option1" class="link">أبداً</label>
+                    <input type="radio" id="q13-option1" name="group13" value="0">
+                    <!-- <label for="q13-option1" class="link">NEARLY EVERY DAY</label> -->
+                    <br>
+                    <br>
+                    <label for="q13-option2" class="link">أحيانا</label>
+                    <input type="radio" id="q13-option2" name="group13" value="1">
+                    <!-- <label for="q13-option2" class="link">SEVERAL DAYS</label> -->
+                    <br>
+                    <br>
+                    <label for="q13-option3" class="link">دائماً</label>
+                    <input type="radio" id="q13-option3" name="group13" value="2">
+                    <!-- <label for="q13-option3" class="link">MORE THAN HALF THE DAYS</label> -->
+                   
+                </div>
+                <div class="nav-buttons">                  
+                  <button onclick="backQuestion(13)">Back</button>
+                  <button onclick="GoToResult()">submit</button>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <script>
+        function checkIfUserAnswer(currentQuestion){
+            var checkifanswer = document.querySelector('input[name="group'+currentQuestion+'"]:checked');
+            if(checkifanswer){
+                nextQuestion(currentQuestion);
+            }
+            else{
+                 alert("please answered on this question");
+            }
+        }
+        function nextQuestion(currentQuestion){
+            var nextQuestion = currentQuestion + 1;
+            var currentQuestionDiv = document.getElementById("question" + currentQuestion);
+            var nextQuestionDiv = document.getElementById("question" + nextQuestion);
+
+            if (nextQuestionDiv) {
+                currentQuestionDiv.classList.remove("active");
+                nextQuestionDiv.classList.add("active");
+            } else {
+                alert("You have answered all questions!");
+            }
+        }
+
+        function backQuestion(currentQuestion) {
+            var prevQuestion = currentQuestion - 1;
+            var currentQuestionDiv = document.getElementById("question" + currentQuestion);
+            var prevQuestionDiv = document.getElementById("question" + prevQuestion);
+
+            if (prevQuestionDiv) {
+                currentQuestionDiv.classList.remove("active");
+                prevQuestionDiv.classList.add("active");
+            } else {
+                alert("You are already at the first question!");
+            }
+        }
+        function GoToResult(){
+            window.location.href="test_result.html";
+        }
+    </script>
+</body>
+</html>

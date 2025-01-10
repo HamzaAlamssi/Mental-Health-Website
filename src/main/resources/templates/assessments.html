@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic&display=swap" rel="stylesheet">
+    <title>Assessments Page</title>
+    <style>
+
+    *{
+        text-align: center;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        margin-bottom: 3.4%;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-family: 'Noto Sans Arabic', sans-serif;
+        text-decoration: none;
+    }
+    .arabic_text{
+        font-size: x-large;
+        margin-top: 5%;
+    }
+    .con{
+        display: flex;
+        justify-content: center;
+    }
+    .square {
+    width: 100px;
+    height: 100px;
+    background-color:rgb(113, 107, 124);
+    height: 10rem;
+    width: 55rem;
+    border-radius: 1rem;
+    background-color: #e2f5fa;
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    font-size: large;
+   }
+
+    .arabic_text2{
+       color: #c4c3c3;
+       font-weight: bold;
+      font-size: medium;
+  }
+  .pic{
+    display: flex;
+    justify-content: center;
+    height: 5rem;
+    width: 5rem;
+    transform: translate(170%,20%);
+    margin-bottom: 30px;
+    background-color:rgba(0, 0, 0, 0.1);
+    border-radius: 1rem;
+  }
+  .btn{
+    transition: transform 0.3s ease-in-out;
+  }
+  .scale-up{
+    transform: scale(1.1);
+  }
+  .assessment-card {
+        position: relative;
+        border: 1px solid #ccc;
+        border-radius: 15px;
+        width: 400px;
+        height: 600px;
+        padding: 20px;
+        margin: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        display: inline-block;
+    }
+
+    .assessment-name {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 60px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .assessment-purpose {
+        width: 80%;
+        margin-bottom: 40px;
+        text-align: center;
+        font-size: 15px;
+        margin-left: 10%;
+        color: rgba(255, 251, 251, 0.8);
+    }
+
+
+    .start-button {
+        background-color: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        border: none;
+        padding: 15px 25px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-bottom: 40px;
+        margin-left: 35%;
+        font-size: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 1rem;
+    }
+    .duration-questions-container {
+        display: flex;
+        justify-content: center;
+    }
+    .duration-questions {
+        font-style: italic;
+        display: inline-block;
+        margin-right: 120px;
+        margin-top: 10px;
+    }
+    .Number-of-Questions{
+        font-style: italic;
+        display: inline-block;
+        margin-left: 50px;
+        margin-top: 10px;
+    }
+
+        .assessment-1 { background-color: #f78da7; }
+        .assessment-2 { background-color: #00d084; }
+        .assessment-3 { background-color: #486DF6; }
+
+
+        nav {
+            background-color: #333;
+            padding: 10px 0;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        nav ul {
+            list-style: none;
+            text-align: center;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            font-weight: bold;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        nav ul li a:hover {
+            color: #6d6be4;
+            text-decoration: none;
+        }
+        i {
+            margin-left: -30px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="/patients/dashboard">حسابك</a></li>
+            <li><a href="/blog/blogs">المدونة</a></li>
+            <li><a href="/patients/Doctor/List">المختصين</a></li>
+            <li><a href="/assessments/viewAssessment">المقاييس</a></li>
+            <li><a href="/homepage">الرئيسية</a></li>
+        </ul>
+    </nav>
+
+<h1 class="arabic_text">المقاييس النفسية</h1>
+<div class="con">
+    <div class="square">
+        <br>
+        <label>لأن صحتك النفسية مهمة تعرف على مستواها باستخدام المقاييس من لبيه</label>
+        <br>
+        <label class="arabic_text2">إخلاء المسؤولية: هذه الاختبارات ليست أداة تشخيصية أو أداة علاجية ولا تغني عن استشارة الطبيب أو الطبيب النفسي</label>
+    </div>
+</div>
+<div id="card1">
+    <div class="assessments-container" >
+        <div class="assessment-card assessment-1">
+            <div class="pic" >
+                <img src="/images/depression (1).png">
+            </div>
+            <div class="assessment-name">مقياس الاكتئاب</div>
+            <div class="assessment-purpose" > سيساعدك هذا الإختبار البسيط في تقييم ومعرفة مستوى الاكتئاب لديك, إجاباتك ستساعدنا في تحديد مستوى صحتك النفسية. في الأسئلة التالية نرجو أن تخبرنا أي من الأعراض تتكرر لديك خلال الأسبوعين الماضيين</div>
+
+            <button class="btn start-button" onclick="viewQuestions('Depression')" >ابدأ الأن</button>
+
+            <div class="duration-questions-container">
+                <div class="duration-questions" >المدة : 3دقائق
+                </div>
+                <div class="Number-of-Questions" >عدد الأسئلة : 9
+                </div>
+            </div>
+        </div>
+        <div class="assessment-card assessment-2">
+            <div class="pic" >
+                <img src="/images/depression (2).png">
+            </div>
+            <div class="assessment-name"> مقياس القلق </div>
+            <div class="assessment-purpose" > سيساعدك هذا الإختبار البسيط في تقييم ومعرفة مستوى القلق لديك, إجاباتك ستساعدنا في تحديد مستوى صحتك النفسية. في الأسئلة التالية نرجو أن تخبرنا أي من الأعراض تتكرر لديك خلال الأسبوعين الماضيين
+            </div>
+            <button class="start-button btn" onclick="viewQuestions('Anxiety')">ابدأ الأن</button>
+            <div class="duration-questions-container">
+                <div class="duration-questions" >المدة : 3دقائق
+                </div>
+                <div class="Number-of-Questions" >عدد الأسئلة : 7
+                </div>
+            </div>
+        </div>
+        <!-- Add more assessment cards here with different colors -->
+        <div class="assessment-card assessment-3">
+            <div class="pic" >
+                <img src="/images/positive-attitude.png">
+            </div>
+            <div class="assessment-name">مقياس تقدير الذات</div>
+            <div class="assessment-purpose" > سيساعدك هذا الإختبار البسيط في تقييم ومعرفة مستوى القلق لديك, إجاباتك ستساعدنا في تحديد مستوى صحتك النفسية. في الأسئلة التالية نرجو أن تخبرنا أي من الأعراض تتكرر لديك خلال الأسبوعين الماضيين</div>
+            <button class="start-button btn" onclick="viewQuestions('Self-Esteem')">ابدأ الأن</button>
+
+            <div class="duration-questions-container">
+                <div class="duration-questions" >المدة: 3دقائق
+                </div>
+                <div class="Number-of-Questions" >عدد الأسئلة: 10
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add more assessment cards here with different colors -->
+    <div class="assessments-container" >
+        <div class="assessment-card assessment-1">
+            <div class="pic" >
+                <img src="/images/anxiety.png">
+            </div>
+            <div class="assessment-name"> مقياس الخجل </div>
+            <div class="assessment-purpose" > سيساعدك هذا الإختبار البسيط في تقييم ومعرفة مستوى الخجل لديك, إجاباتك ستساعدنا في تحديد مستوى صحتك النفسية. في الأسئلة التالية نرجو أن تخبرنا أي من الأعراض تتكرر لديك خلال الأسبوعين الماضيين</div>
+            <button class="start-button btn" onclick="viewQuestions('SocialShyness')">ابدأ الأن</button>
+            <div class="duration-questions-container">
+                <div class="duration-questions" >المدة: 7دقائق
+                </div>
+                <div class="Number-of-Questions" >عدد الأسئلة: 15
+                </div>
+            </div>
+        </div>
+        <!-- Add more assessment cards here with different colors -->
+        <div class="assessment-card assessment-3">
+            <div class="pic" >
+                <img src="/images/ocd (1).png">
+            </div>
+            <div class="assessment-name">مقياس الوسواس القهري</div>
+            <div class="assessment-purpose" > سيساعدك هذا الإختبار البسيط في تقييم ومعرفة مستوى الوسواس القهري لديك, إجاباتك ستساعدنا في تحديد مستوى صحتك النفسية. في الأسئلة التالية نرجو أن تخبرنا أي من الأعراض تتكرر لديك خلال الأسبوعين الماضيين</div>
+            <button class="start-button btn" onclick="viewQuestions('ObsessiveCompulsive')">ابدأ الأن</button>
+            <div class="duration-questions-container">
+                <div class="duration-questions" >المدة: 6دقائق
+                </div>
+                <div class="Number-of-Questions" >عدد الأسئلة: 13
+                </div>
+            </div>
+        </div>
+        <!-- Add more assessment cards here with different colors -->
+        <div class="assessment-card assessment-2">
+            <div class="pic" >
+                <img src="/images/burnout.png">
+            </div>
+            <div class="assessment-name"> مقياس الاحتراق الوظيفي </div>
+            <div class="assessment-purpose" > سيساعدك هذا الإختبار البسيط في تقييم ومعرفة مستوى الاحنراق الوظيفي لديك, إجاباتك ستساعدنا في تحديد مستوى صحتك النفسية. في الأسئلة التالية نرجو أن تخبرنا أي من الأعراض تتكرر لديك خلال الأسبوعين الماضيين</div>
+            <button class="start-button btn" onclick="viewQuestions('Burnout')">ابدأ الأن</button>
+            <div class="duration-questions-container">
+                <div class="duration-questions" >المدة: 7دقائق
+                </div>
+                <div class="Number-of-Questions" >عدد الأسئلة:  15
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Add more assessment cards here with different colors -->
+    <div class="assessments-container">
+        <div class="assessment-card assessment-3">
+            <div class="pic" >
+                <img src="/images/stubborn.png">
+            </div>
+            <div class="assessment-name"> مقياس النرجسية </div>
+            <div class="assessment-purpose" > سيساعدك هذا الإختبار البسيط في تقييم ومعرفة مستوى النرجسية لديك, إجاباتك ستساعدنا في تحديد مستوى صحتك النفسية. في الأسئلة التالية نرجو أن تخبرنا أي من الأعراض تتكرر لديك خلال الأسبوعين الماضيين</div>
+            <button class="start-button btn" onclick="viewQuestions('Narcissistic')" >ابدأ الأن</button>
+            <div class="duration-questions-container">
+                <div class="duration-questions" >المدة : 3دقائق
+                </div>
+                <div class="Number-of-Questions" >عدد الأسئلة : 9
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function viewQuestions(assessmentName) {
+        window.location.href = "/assessments/questions?assessmentName=" + assessmentName;
+    }
+    document.getElementById("card1").addEventListener("mouseover", function(event) {
+    if (event.target.classList.contains("btn")) {
+        event.target.classList.add("scale-up");
+    }
+});
+
+document.getElementById("card1").addEventListener("mouseout", function(event) {
+    if (event.target.classList.contains("btn")) {
+        event.target.classList.remove("scale-up");
+    }
+});
+
+
+
+
+</script>
+
+</body>
+</html>
+
+

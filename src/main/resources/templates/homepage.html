@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="ar" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <title>Doctors List</title>
+  <style>
+/* Resetting default margin and padding */
+body {
+    margin: 0;
+    padding: 0;
+    direction: rtl;
+    font-family: 'IBM Plex Sans Arabic';
+    background: linear-gradient(90deg, rgba(214, 243, 179, 1) 0%, rgba(180, 232, 233, 1) 100%);
+}
+
+/* Header styling */
+header {
+    background: rgba(255, 255, 255, .9);
+    backdrop-filter: blur(10px);
+    /* Blur effect */
+    padding: 20px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    /* Shadow */
+    position: sticky;
+    /* Make the header sticky */
+    top: 0;
+    /* Stick it to the top of the viewport */
+    z-index: 1000;
+    /* Ensure it's above other content */
+}
+
+
+/* Navigation styling */
+nav {
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+}
+
+.doctors-list.scrolling {
+    animation: none;
+    /* Remove animation */
+}
+
+.doctors-container {
+    width: 80%;
+    margin: 20px auto;
+    overflow: hidden;
+    position: relative;
+}
+
+.doctors-list {
+    display: flex;
+    animation: 3s infinite ease-in;
+}
+
+.doctor h2 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.rating {
+    font-size: 14px;
+    color: #999;
+}
+
+.doctor p {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.doctor img {
+    width: 100%;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    /* Smooth color transition on hover */
+}
+
+nav ul li a:hover {
+    color: #6d6be4;
+    /* Darker color on hover */
+}
+
+@keyframes scrollLeft {
+    to {
+        transform: translateX(calc(-40% + 300px));
+        /* Adjust transform */
+    }
+}
+
+@keyframes scrollRight {
+    to {
+        transform: translateX(100%);
+        /* Adjust transform */
+    }
+}
+
+.head {
+    align-items: center;
+    font-size: 50px;
+    margin-left: 600px;
+    position: absolute;
+    display: grid;
+    left: 180px;
+    top: 210px;
+    color: #000000;
+    text-shadow: 0 0 #13f845;
+    text-align: center;
+    opacity: 0;
+    animation: popAnimation 0s ease-in-out 0.2s forwards;
+}
+
+@keyframes popAnimation {
+    0% {
+        opacity: 0;
+
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.desc {
+    position: absolute;
+    top: 290px;
+    right: 481px;
+    font-weight: bold;
+}
+
+.hidden1 {
+    opacity: 1;
+    /* filter: blur(5px); */
+    /* filter: blur(5px); */
+    transition: all 4s;
+    transition-delay: 1300ms;
+    margin-left: 600px;
+    top: 1570px;
+    position: absolute;
+}
+
+.show {
+
+    opacity: 0;
+    filter: blur(0);
+    transform: translateX(0%);
+    transition-delay: 400ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hidden {
+        animation: none;
+    }
+
+    .hidden1 {
+        animation: none;
+    }
+}
+
+body {
+   font-family: 'IBM Plex Sans Arabic';
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background-color: #f4f4f4;
+}
+
+header {
+    background: #333;
+    color: #fff;
+    padding: 1em 0;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+header nav ul li {
+    margin: 0 1em;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.head,
+.desc {
+    margin-top: 1em;
+}
+
+.section {
+    background-color: #ffffff;
+    padding: 2em 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.columns {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2em;
+}
+
+.column {
+    text-align: center;
+}
+
+.home-five-icons .columns {
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.block-image img {
+    max-width: 100px;
+    margin: 0 auto;
+}
+
+.text-box p {
+    margin: 0.5em 0;
+    font-weight: bold;
+}
+
+.doctors-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3em;
+}
+
+.doctors-list {
+    display: flex;
+    overflow-x: auto;
+}
+
+.doctor {
+    background: #fff;
+    margin: 0 1em;
+    padding: 1em;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.doctor img {
+    max-width: 100px;
+    margin-bottom: 1em;
+    border-radius: 50%;
+}
+
+.doctor-column,
+.calendar-column {
+    background-position: center center;
+    background-size: cover;
+    border-color: #e3f0fb;
+    border-style: solid;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-radius: 20px;
+    box-shadow: 0px 7px 21px 0px rgba(241, 248, 255, 0.3);
+    padding: 2em;
+}
+
+.lm-block-image {
+    margin: 0;
+    border: 1px solid #e3f0fb;
+    background-color: white;
+}
+
+.icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    box-shadow: 0px 7px 21px 0px rgba(241, 248, 255, 0.3);
+}
+
+.lm-block-image {
+    margin: 0;
+}
+
+.icon-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 48px;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+    box-shadow: 0px 7px 21px 0px rgba(241, 248, 255, 0.3);
+    /* width: 180px; */
+    position: sticky;
+    height: 121px;
+}
+
+.lm-column-root {
+    padding: 31px;
+    flex-direction: row-reverse;
+    display: inline-flex;
+}
+
+.lm-block-image {
+    margin: 0;
+}
+
+.icon-container p {
+    margin: 10px 0 0;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #080809;
+    font-weight: bold;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.arrow-btn {
+    font-size: 24px;
+    padding: 10px;
+    margin: 0 10px;
+}
+
+.doctor-list {
+    display: flex;
+    overflow-x: hidden;
+}
+
+.doctor {
+    flex: 0 0 auto;
+    width: 200px;
+    height: 100px;
+    background-color: #f0f0f0;
+    margin: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.doctor .hidden {
+    opacity: 0;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.arrow-btn {
+    font-size: 24px;
+    padding: 10px;
+    margin: 0 10px;
+}
+
+.doctor-list {
+    display: flex;
+    overflow-x: hidden;
+}
+
+.doctor {
+    flex: 0 0 auto;
+    width: 200px;
+    height: 100px;
+    background-color: #ffffff;
+    margin: 0 10px;
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-end;
+    height: 250px;
+    align-items: center;
+    align-content: flex-end;
+    flex-direction: column;
+    /* top: 0px; */
+    padding: -10px;
+}
+
+.doctor img {
+<!--    max-width: 120px;-->
+<!--    margin-bottom: 2.2rem;-->
+<!--    border-radius: 50%;-->
+<!--    top: 10px;-->
+<!--    width : 120px;-->
+<!--    height : 120px;-->
+<!--    margin-top: 30%;-->
+
+          display: block;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            width: 110px;
+            height: 110px;
+            height: 110px;
+}
+a{
+text-decoration: none;
+color: #080809;
+}
+
+    </style>
+</head>
+
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href="#">الرئيسية</a></li>
+      <li><a href="/assessments/viewAssessment">المقاييس</a></li>
+      <li><a href="/patients/Doctor/List">المختصين</a></li>
+      <li><a href="/blog/blogs">المدونة</a></li>
+      <li><a href="/patients/dashboard">حسابك</a></li>
+    </ul>
+  </nav>
+</header>
+
+
+
+
+<div class="section" style="background-color:#ffffff;padding-bottom:90px;">
+  <div class="container max-w-xl">
+    <div class="columns grid grid-cols-1 gap-2">
+      <div class="column col-12 text-align-center">
+        <div class="column-container">
+          <div class="column-content">
+            <div class="section" style="padding-bottom:0px;">
+              <div class="container max-w-xl">
+                <div class="columns grid grid-cols-1 gap-2 justify-items-center">
+                  <div class="column col-12 animate__fadeIn visible" data-animation="animate__fadeIn">
+                    <div class="column-container">
+                      <div class="column-content">
+                        <h1 class="heading"
+                            style="color:#000000;font-size:2.5em;font-weight:800;line-height:1.8em;margin:0;padding-bottom:10px;">
+                          <span>منصة الرفاهية النفسية</span>
+                        </h1>
+                        <div class="text-box" style="color:#000000;line-height:2em;">
+                          <p>تطبيق لبيه هو الحل المتكامل لتقديم خدمات الرعاية والرفاهية النفسية عن بعد، عبر الجلسات
+                            والمحاضرات ومجموعات الدعم المقدمة من المختصين المرخصين. سجل في موقع لبيه و ابدأ رحلة التعافي
+                            الآن.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="section home-five-icons" style="padding-top:1em;padding-bottom:0px;">
+              <div class="container max-w-xl">
+                <div class="columns grid grid-cols-10 gap-2 justify-items-center">
+                  <div class="column col-span-2 animate__fadeInUp visible" data-animation="animate__fadeInUp"
+                       style="margin-bottom:2em;">
+                    <div class="column-container">
+                      <div class="column-content">
+                        <figure class="block-image" style="margin-bottom:10px;">
+                          <img decoding="async" src="https://labayh.net/wp-content/uploads/2022/08/checklist-user.svg"
+                               alt="">
+                        </figure>
+                        <div class="text-box" style="color:#24262f;">
+                          <p>جلسات مجدولة</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="column col-span-2 animate__fadeInUp visible" data-animation="animate__fadeInUp"
+                       data-delay="100" style="margin-bottom:2em;">
+                    <div class="column-container">
+                      <div class="column-content">
+                        <figure class="block-image" style="margin-bottom:10px;">
+                          <img decoding="async"
+                               src="http://labayh.net/wp-content/uploads/2022/06/24-support-circle-checkmark.svg" alt="">
+                        </figure>
+                        <div class="text-box" style="color:#24262f;">
+                          <p>جلسات فورية</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!--                  <div class="column col-span-2 animate__fadeInUp visible" data-animation="animate__fadeInUp"-->
+                  <!--                       data-delay="200" style="margin-bottom:2em;">-->
+                  <!--                    <div class="column-container">-->
+                  <!--                      <div class="column-content">-->
+                  <!--                        <figure class="block-image" style="margin-bottom:10px;">-->
+                  <!--                          <img decoding="async"-->
+                  <!--                               src="https://labayh.net/wp-content/uploads/2022/08/users-message-support-1.svg" alt="">-->
+                  <!--                        </figure>-->
+                  <!--                        <div class="text-box" style="color:#24262f;">-->
+                  <!--                          <p>مجموعات دعم</p>-->
+                  <!--                        </div>-->
+                  <!--                      </div>-->
+                  <!--                    </div>-->
+                  <!--                  </div>-->
+
+                  <div class="column col-span-2 animate__fadeInUp visible" data-animation="animate__fadeInUp"
+                       data-delay="300" style="margin-bottom:2em;">
+                    <div class="column-container">
+                      <div class="column-content">
+                        <figure class="block-image" style="margin-bottom:10px;">
+                          <img decoding="async"
+                               src="http://labayh.net/wp-content/uploads/2022/06/Checkmark-Done-Check.svg" alt="">
+                        </figure>
+                        <div class="text-box" style="color:#24262f;">
+                          <p>برامج علاجية</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!--                  <div class="column col-span-2 animate__fadeInUp visible" data-animation="animate__fadeInUp"-->
+                  <!--                       data-delay="400" style="margin-bottom:2em;">-->
+                  <!--                    <div class="column-container">-->
+                  <!--                      <div class="column-content">-->
+                  <!--                        <figure class="block-image" style="margin-bottom:10px;">-->
+                  <!--                          <img decoding="async"-->
+                  <!--                               src="https://labayh.net/wp-content/uploads/2022/08/employee-video-call-camera.svg" alt="">-->
+                  <!--                        </figure>-->
+                  <!--                        <div class="text-box" style="color:#24262f;">-->
+                  <!--                          <p>لقاءات مسجلة</p>-->
+                  <!--                        </div>-->
+                  <!--                      </div>-->
+                  <!--                    </div>-->
+                  <!--                  </div>-->
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="lm-section-root" style="background-size: cover; padding-top: 0px; padding-bottom: 0px;">
+  <div class="lm-section-content container max-w-xl">
+    <div
+            class="lm-section-columns lm-inner-blocks-container grid grid-cols-12 m:grid-cols-12 s:grid-cols-12 gap-2 m:gap-1.5 s:gap-1 justify-items-default">
+      <!-- Column 1 -->
+      <div
+              class="lm-column-root col-8 m:col-9 s:col-12 col-span-8 m:col-span-12 s:col-span-12 order- m:order- s:order- text-align- m:text-align- s:text-align-"
+              style="">
+        <div class="lm-column-container" style="background-position: center center;background-size:cover;">
+          <div class="lm-column-content lm-inner-blocks-container" style="">
+            <h2 class="lm-heading-title-con"
+                style="position:relative;color:#000000;font-size:2em;font-weight:600;line-height:1.8em;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;padding-bottom:10px;display:block;">
+              <span>مختصون مرخصون على مدار الساعة</span>
+            </h2>
+            <div class="lm-text-box" style="color:#000000;line-height:2em;margin-bottom:2em;">
+              <p>أفضل الأطباء والأخصائيين النفسيين والأسريين المرخصين لتقديم الجلسات بسهولة وخصوصية عبر الموقع.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Column 2 -->
+      <div
+              class="lm-column-root col-12 m:col-12 s:col-12 col-span-6 order-2 m:order-2 s:order-2 text-align-center m:text-align-center s:text-align-center"
+              style="">
+        <div class="lm-column-container icon-container">
+          <div class="lm-column-content lm-inner-blocks-container">
+            <figure class="lm-block-image">
+              <img decoding="async" width="35px"
+                   src="http://labayh.net/wp-content/uploads/2022/08/doctor-checkmark.svg" alt="" class="lm-block-img">
+            </figure>
+            <p>1000+</p>
+          </div>
+        </div>
+      </div>
+      <!-- Column 3 -->
+      <div
+              class="lm-column-root col-12 m:col-12 s:col-12 col-span-6 order-1 m:order-1 s:order-1 text-align-center m:text-align-center s:text-align-center"
+              data-delay="100" style="">
+        <div class="lm-column-container icon-container">
+          <div class="lm-column-content lm-inner-blocks-container">
+            <figure class="lm-block-image">
+              <img decoding="async" width="33px"
+                   src="http://labayh.net/wp-content/uploads/2022/06/calendar-schedule-3.svg" alt=""
+                   class="lm-block-img">
+            </figure>
+            <p>47.5M</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--<section class="doctors-container">-->
+<!--  <div class="doctors-list">-->
+<!--    <div class="doctors-list">-->
+<!--      <div class="doctor">-->
+<!--        <img src="image.png" alt="Doctor 1">-->
+<!--        <h2>د. أحمد الخالدي</h2>-->
+<!--        <p>اخصائي جراحة عامة</p>-->
+<!--        <span class="rating">تقييم: 4.8</span>-->
+<!--      </div>-->
+<!--      <div class="doctor">-->
+<!--        <img src="image.png" alt="Doctor 2">-->
+<!--        <h2>د. سارة العبيدي</h2>-->
+<!--        <p>اخصائية طب الأطفال</p>-->
+<!--        <span class="rating">تقييم: 4.5</span>-->
+<!--      </div>-->
+
+<!--      <div class="doctor">-->
+<!--        <img src="image.png" alt="Doctor 3">-->
+<!--        <h2>د. محمد خليل</h2>-->
+<!--        <p>طبيب عيون</p>-->
+<!--        <span class="rating">تقييم: 4.9</span>-->
+<!--      </div>-->
+<!--      <div class="doctor">-->
+<!--        <img src="image.png" alt="Doctor 4">-->
+<!--        <h2>د. ليلى عبدالله</h2>-->
+<!--        <p>اخصائية نساء وتوليد</p>-->
+<!--        <span class="rating">تقييم: 4.7</span>-->
+<!--      </div>-->
+<!--      <div class="doctor">-->
+<!--        <img src="image.png" alt="Doctor 5">-->
+<!--        <h2>د. علي الغامدي</h2>-->
+<!--        <p>اخصائي أمراض القلب</p>-->
+<!--        <span class="rating">تقييم: 4.6</span>-->
+<!--      </div>-->
+<!--      <div class="doctor">-->
+<!--        <img src="image.png" alt="Doctor 6">-->
+<!--        <h2>د. فاطمة المالكي</h2>-->
+<!--        <p>اخصائية أمراض جلدية</p>-->
+<!--        <span class="rating">تقييم: 4.8</span>-->
+<!--      </div>-->
+<!--      <div class="doctor">-->
+<!--        <img src="image.png" alt="Doctor 7">-->
+<!--        <h2>د. يوسف العلوي</h2>-->
+<!--        <p>اخصائي أمراض باطنية</p>-->
+<!--        <span class="rating">تقييم: 4.9</span>-->
+<!--      </div>-->
+<!--      <div class="doctor">-->
+<!--        <img src="image.png" alt="Doctor 8">-->
+<!--        <h2>د. نورهان علي</h2>-->
+<!--        <p>طبيبة أسنان</p>-->
+<!--        <span class="rating">تقييم: 4.5</span>-->
+<!--      </div>-->
+<!--      <div class="doctor">-->
+<!--        <img src="image.png" alt="Doctor 9">-->
+<!--        <h2>د. محمود حسن</h2>-->
+<!--        <p>طبيب أطفال</p>-->
+<!--        <span class="rating">تقييم: 4.7</span>-->
+<!--      </div>-->
+<!--      <div class="doctor">-->
+<!--        <img src="image.png" alt="Doctor 10">-->
+<!--        <h2>د. آمنة عبدالرحمن</h2>-->
+<!--        <p>اخصائية علاج طبيعي</p>-->
+<!--        <span class="rating">تقييم: 4.6</span>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</section>-->
+<section class="doctors-container">
+  <div class="doctors-list">
+    <div th:each="doctor : ${doctors}" class="doctor">
+      <a th:href="@{'/patients/' + ${doctor.email}}">
+      <img th:src="${doctor != null && doctor.profilePictureContent != null ? '/patients/' + doctor.email + '/profile-picture/doctor' : '/images/userimg.png'}">
+      <h2 th:text="${doctor.name}"></h2>
+      <p th:text="${doctor.aboutTheDoctor}"></p>
+      <span class="rating">سعر الجلسة: <span th:text="${doctor.sessionPrice}"></span></span>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<script >
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const doctorList = document.querySelector('.doctor-list');
+    const doctors = document.querySelectorAll('.doctor');
+    const visibleDoctors = 5; // Number of doctors to display at a time
+    let currentOffset = 0;
+
+    function showDoctors() {
+        doctors.forEach((doctor, index) => {
+            if (index >= currentOffset && index < currentOffset + visibleDoctors) {
+                doctor.classList.remove('hidden');
+            } else {
+                doctor.classList.add('hidden');
+            }
+        });
+    }
+
+    showDoctors();
+
+    prevBtn.addEventListener('click', function () {
+        if (currentOffset > 0) {
+            currentOffset--;
+            doctorList.style.transform = `translateX(-${currentOffset * (200 + 20)}px)`; // Adjust width and margin as needed
+            showDoctors();
+        }
+    });
+
+    nextBtn.addEventListener('click', function () {
+        if (currentOffset < doctors.length - visibleDoctors) {
+            currentOffset++;
+            doctorList.style.transform = `translateX(-${currentOffset * (200 + 20)}px)`; // Adjust width and margin as needed
+            showDoctors();
+        }
+    });
+});
+
+
+</script>
+</body>
+
+</html>
